@@ -1,0 +1,73 @@
+@font-face {
+        font-family: globalfont;
+        src: url(../londinia-medium/LondiniaMedium.ttf);
+}
+
+body{
+	font-family: globalfont;
+	background-color: #211d71;
+}
+
+a:link{
+  text-decoration: none!important;
+}
+
+.filter{
+	background-color: #f5f5f5;
+}
+
+
+/*dropdown*/
+.collapsible {
+
+  background-color: #f5f5f5;
+  color: black;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  /*border: none;*/
+  text-align: left;
+  outline: none;
+  /*font-size: 16px;*/
+}
+
+/*.active, .collapsible:hover {
+  background-color: #555;
+}*/
+.collapsible:after {
+  content: '\002B';
+  color: black;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+  color: black;
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: white;
+  border-left: 1px solid #f5f5f5;
+  border-right: 1px solid #f5f5f5;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.button-submit {
+	margin: 10px 0;
+}
+
+.top-buffer { 
+	margin-top:20px; 
+}
+
+button:focus {outline:0;}
+button{text-decoration: :none;}
+
+button:hover {text-decoration: none;}
+
