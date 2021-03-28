@@ -17,9 +17,10 @@ class Nasabah_Kuisioner_Result extends CI_Controller {
     $data['judul'] 			= "Kuisioner Result";
     $data['kuisioner']  = $this->db->get('t_kuisioner')->result();
     $data['kode'] 			= $this->MNasabah_Kuisioner_Result->get_no_kuisioner();
+		// $data['atribut'] 			= $this->db->get('t_atribut')->result();
 		$data['nama_karyawan'] =  $this->db->get_where('t_user',['level' => 'Teller'])->result();
 		// $data['nama_karyawan'] =  $this->db->select('*')->from('t_user')->where('level','Teller')->get()->result();
-		
+
     $this->load->view('kuisioner/index',$data);
 	}
 

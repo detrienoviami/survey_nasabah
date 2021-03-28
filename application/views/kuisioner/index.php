@@ -156,6 +156,7 @@
                                       <tr>
                                         <td><?php echo $soal->id_kuisioner ?><input type="hidden" name="no_kuisioner<?= $i ?>" id="no_kuisioner" value="<?php echo $soal->id_kuisioner ?>"></td>
                                         <td><?php echo $soal->kuisioner ?><input type="hidden" value=<?php echo $soal->kuisioner?> name='id_soal<?= $i ?>'</td>
+
                                         <?php if ($soal->id_kuisioner != '5'): ?>
                                         <td><input type='radio' name='jawaban<?=$i?>' value='1' required /> Sangat Tidak Puas</td>
                                         <td><input type='radio' name='jawaban<?=$i?>' value='2' required /> Tidak Puas</td>

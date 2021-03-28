@@ -2,9 +2,9 @@
 class M_Total extends CI_Model{
 
     var $table = 't_total'; //nama tabel dari database
-    var $column_order = array(null, 'id_total','stp','tp','cp','p','sp','entrophy','gain'); //field yang ada di table kuisioner
-    var $column_search = array('id_total','stp','tp','cp','p','sp','entrophy','gain'); //field yang diizin untuk pencarian
-    var $order = array('id_total' => 'desc'); // default order
+    var $column_order = array(null, 'id_kuisioner','stp','tp','cp','p','sp','entrophy','gain'); //field yang ada di table kuisioner
+    var $column_search = array('id_kuisioner','stp','tp','cp','p','sp','entrophy','gain'); //field yang diizin untuk pencarian
+    //var $order = array('id_kuisioner' => 'desc'); // default order
 
     public function __construct()
     {
@@ -12,9 +12,14 @@ class M_Total extends CI_Model{
         $this->load->database();
     }
 
-    private function _get_datatables_query()
+    private function _get_datatables_query($term='')
     {
-        $this->db->from($this->table);
+        $column = array('t_total.*,t_kuisioner.*,COUNT(t_kuisioner_result.jawaban) as `jawaban`');
+        $this->db->select('t_total.*,t_kuisioner.*,COUNT(t_kuisioner_result.jawaban) as `jawaban`');
+        $this->db->from('t_total');
+        $this->db->group_by('t_total.id_kuisioner');
+        $this->db->join('t_kuisioner_result','t_total.id_kuisioner = t_kuisioner_result.id_kuisioner', 'left');
+        $this->db->join('t_kuisioner','t_kuisioner_result.id_kuisioner = t_kuisioner.id_kuisioner', 'left');
         $i = 0;
         foreach ($this->column_search as $item) // looping awal
         {
@@ -38,7 +43,7 @@ class M_Total extends CI_Model{
 
         if(isset($_POST['order']))
         {
-            $this->db->order_by($this->column_order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
+            $this->db->order_by($column[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
         }
         else if(isset($this->order))
         {
@@ -49,7 +54,8 @@ class M_Total extends CI_Model{
 
     function get_datatables()
     {
-        $this->_get_datatables_query();
+      $term = $_REQUEST['search']['value'];
+      $this->_get_datatables_query($term);
         if($_POST['length'] != -1)
         $this->db->limit($_POST['length'], $_POST['start']);
         $query = $this->db->get();

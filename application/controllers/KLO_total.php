@@ -5,7 +5,7 @@ class KLO_total extends CI_Controller {
 	public function __construct()
   {
     parent::__construct();
-    $this->load->model('MKLO_total');
+    //$this->load->model('MKLO_total');
 		$this->load->model('M_Total');
     $this->load->library('form_validation');
   }
@@ -26,20 +26,23 @@ class KLO_total extends CI_Controller {
 	    foreach ($total as $field) {
 	        $row = array();
 	        $row[] = $no++;
-	        $row[] = $field->id_total;
+	        $row[] = $field->id_kuisioner;
 	        $row[] = $field->stp;
 					$row[] = $field->tp;
 					$row[] = $field->cp;
 					$row[] = $field->p;
 					$row[] = $field->sp;
-					$row[] = $field->total;
+					$row[] = $field->entrophy;
+					$row[] = $field->gain;
+					$row[] = $field->jawaban;
+					//$row[] = $field->total;
 
 	        $row[] = '<a class="btn btn-warning btn-sm" href="javascript:void(0)"
-	                  title="Edit" onclick="ajax_edit('."'".$field->id_total."'".')">
+	                  title="Edit" onclick="ajax_edit('."'".$field->id_kuisioner."'".')">
 	                  <i class="fa fa-edit"></i>
 	           </a>
 	           <a class="btn btn-danger btn-sm" href="javascript:void(0)"
-	                  title="Hapus" onclick="ajax_delete('."'".$field->id_total."'".')">
+	                  title="Hapus" onclick="ajax_delete('."'".$field->id_kuisioner."'".')">
 	                  <i class="fa fa-trash"></i>
 	           </a>';
 

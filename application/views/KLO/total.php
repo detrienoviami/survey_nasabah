@@ -31,6 +31,8 @@
                     <th>Sangat Puas</th>
                     <th>Entrophy</th>
                     <th>Gain</th>
+                    <th>total</th>
+                    <th>aksi</th>
                   </tr>
                 </thead>
               </table>

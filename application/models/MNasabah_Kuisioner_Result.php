@@ -48,6 +48,29 @@ class MNasabah_Kuisioner_Result extends CI_Model{
 
       }
 
+      function get_all_attribut()
+    {
+        $query = $this->db->get('t_atribut');
+        $data = array();
+
+        foreach($query as $attr)
+        {
+               $row = array();
+               $row = $attr->id_atribut; // add each user id to the array
+               $row = $attr->atribut;
+               $row = $attr->nilai_atribut;
+               $data[] = $row;
+        }
+
+        $output = array(
+          "data" => $data,
+  	    );
+
+  	    //output to json format
+  	    echo json_encode($output);
+
+    }
+
   public function tambah()
   {
       $get_soal= $this->db->select('*')->from('t_kuisioner')->get()->result();
