@@ -6,6 +6,7 @@ class KLO_total extends CI_Controller {
   {
     parent::__construct();
     //$this->load->model('MKLO_total');
+		$this->load->model('MNasabah_Kuisioner_Result');
 		$this->load->model('M_Total');
     $this->load->library('form_validation');
   }
@@ -14,6 +15,14 @@ class KLO_total extends CI_Controller {
 	{
 		$data['title']	  = 'Kelompok Nilai';
 		$data['content']  = 'KLO/total.php';
+		$data['total'] = $this->M_Total->get_db();
+		$data['entrophy'] = $this->M_Total->hitung_entropy();
+		// var_dump($data['entrophy']);
+		$data['gain'] = $this->M_Total->hitungNilai();
+		$data['kesimpulan'] = $this->M_Total->simpulan();
+
+		var_dump($data['gain']);
+	//	$data['insert'] = $this->M_Total->insert_auto();
 		$this->load->view('klo/main_admin',$data);
 	}
 
@@ -22,6 +31,8 @@ class KLO_total extends CI_Controller {
 	    $total = $this->M_Total->get_datatables();
 	    $data = array();
 	    $no = $_POST['start']+1;
+
+
 
 	    foreach ($total as $field) {
 	        $row = array();
@@ -34,8 +45,7 @@ class KLO_total extends CI_Controller {
 					$row[] = $field->sp;
 					$row[] = $field->entrophy;
 					$row[] = $field->gain;
-					$row[] = $field->jawaban;
-					//$row[] = $field->total;
+
 
 	        $row[] = '<a class="btn btn-warning btn-sm" href="javascript:void(0)"
 	                  title="Edit" onclick="ajax_edit('."'".$field->id_kuisioner."'".')">
@@ -49,6 +59,7 @@ class KLO_total extends CI_Controller {
 	        $data[] = $row;
 	    }
 
+
 	    $output = array(
         "draw" => $_POST['draw'],
         "recordsTotal" => $this->M_Total->count_all(),
@@ -61,10 +72,17 @@ class KLO_total extends CI_Controller {
 
     public function tambah()
     {
-      $data = array(
-          'kuisioner' => $this->input->post('kuisioner')
-      );
-      $insert = $this->M_Total->save($data); // simpan data ke model
+			$data = [
+        "id_kuisioner" => $this->input->post('id_kuisioner', true),
+        "stp" => $this->input->post('stp', true),
+        "tp" => $this->input->post('tp', true),
+        "cp" => $this->input->post('cp', true),
+        "p" => $this->input->post('p', true),
+        "sp" => $this->input->post('sp', true),
+        "entrophy" => $this->input->post('entrophy', true),
+        "gain" => $this->input->post('gain', true),
+      ];
+      return $insert = $this->M_Total->save($data); // simpan data ke model
       echo json_encode(array('status' => TRUE)); // akan muncul notif ini di kirim ke view, function ajax_save()
     }
 
@@ -76,11 +94,18 @@ class KLO_total extends CI_Controller {
 
     public function update()
     {
-        $data = array(
-            'kuisioner' => $this->input->post('kuisioner'),
-        );
+			$data = [
+				"id_kuisioner" => $this->input->post('id_kuisioner', true),
+				"stp" => $this->input->post('stp', true),
+				"tp" => $this->input->post('tp', true),
+				"cp" => $this->input->post('cp', true),
+				"p" => $this->input->post('p', true),
+				"sp" => $this->input->post('sp', true),
+				"entrophy" => $this->input->post('entrophy', true),
+				"gain" => $this->input->post('gain', true),
+			];
 
-        $id = array('id_total' => $this->input->post('id_total'));
+        $id = array('id_kuisioner' => $this->input->post('id_kuisioner'));
         $this->M_Total->update($id, $data);
         echo json_encode(array("status" => TRUE));
     }
