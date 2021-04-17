@@ -189,30 +189,30 @@ class M_Total extends CI_Model{
         // '' => 0,
       );
 
-      foreach ($nilaiUnsurPelayanan as $kuisioner){
-
-        foreach ($kuisioner as $pelayanan => $nilai){
-          if(array_key_exists($pelayanan, $hasil)){
-            $hasil[$pelayanan] += $nilai;
-          }
-        }
-      }
+      // foreach ($nilaiUnsurPelayanan as $kuisioner){
+      //
+      //   foreach ($kuisioner as $pelayanan => $nilai){
+      //     if(array_key_exists($pelayanan, $hasil)){
+      //       $hasil[$pelayanan] += $nilai;
+      //     }
+      //   }
+      // }
 
       // foreach ($hasil as $unitPelayanan => $nilai){
   		// 	$hasil[$unitPelayanan] = $nilai*0.071;
   		// }
 
 
-      foreach ($hasil as $unitPelayanan => $nilai){
-        $hasil[$unitPelayanan] = $nilai*0.071;
-      }
+      // foreach ($hasil as $unitPelayanan => $nilai){
+      //   $hasil[$unitPelayanan] = $nilai*0.071;
+      // }
 
 
-  		// foreach ($nilaiUnsurPelayanan as $unsurPelayanan){
-  		// 	$result += $unsurPelayanan*0.071;
-  		// }
+  		foreach ($nilaiUnsurPelayanan as $unsurPelayanan){
+  			$result += $unsurPelayanan*0.071;
+  		}
 
-  		return $hasil;
+  		return $result;
   	}
 
     public function simpulan(){
