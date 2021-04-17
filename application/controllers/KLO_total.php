@@ -32,7 +32,9 @@ class KLO_total extends CI_Controller {
 					$row[] = $field->cp;
 					$row[] = $field->p;
 					$row[] = $field->sp;
-					$row[] = $field->total;
+					$row[] = $field->entrophy;
+					$row[] = $field->gain;
+					// $row[] = $field->total;
 
 	        $row[] = '<a class="btn btn-warning btn-sm" href="javascript:void(0)"
 	                  title="Edit" onclick="ajax_edit('."'".$field->id_total."'".')">
