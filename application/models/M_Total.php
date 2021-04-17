@@ -63,6 +63,7 @@ class M_Total extends CI_Model{
     {
         $this->_get_datatables_query();
         $query = $this->db->get();
+        // echo $this->db->last_query();die;
         return $query->num_rows();
     }
 
