@@ -177,47 +177,47 @@ class M_Total extends CI_Model{
 		    return $hasil;
     }
 
-    public function hitungNilai() {
-  		$nilaiUnsurPelayanan = $this->hitung_entropy();
-  		$result = 0;
-      //var_dump($nilaiUnsurPelayanan);
-      $hasil=array(
-        'sp' => 0,
-        'p' => 0,
-        'cp' => 0,
-        'tp' => 0,
-        'stp' => 0,
-        // '' => 0,
-      );
-
-      foreach ($nilaiUnsurPelayanan as $kuisioner){
-
-        foreach ($kuisioner as $pelayanan => $nilai){
-          if(array_key_exists($pelayanan, $hasil)){
-            $hasil[$pelayanan] += $nilai;
-          }
-        }
-      }
-
+    // public function hitungNilai() {
+  		// $nilaiUnsurPelayanan = $this->hitung_entropy();
+  		// $result = 0;
+      // //var_dump($nilaiUnsurPelayanan);
+      // $hasil=array(
+      //   'sp' => 0,
+      //   'p' => 0,
+      //   'cp' => 0,
+      //   'tp' => 0,
+      //   'stp' => 0,
+      //   // '' => 0,
+      // );
+      //
+      // foreach ($nilaiUnsurPelayanan as $kuisioner){
+      //
+      //   foreach ($kuisioner as $pelayanan => $nilai){
+      //     if(array_key_exists($pelayanan, $hasil)){
+      //       $hasil[$pelayanan] += $nilai;
+      //     }
+      //   }
+      // }
+      //
+      // // foreach ($hasil as $unitPelayanan => $nilai){
+  		// // 	$hasil[$unitPelayanan] = $nilai*0.071;
+  		// // }
+      //
+      //
       // foreach ($hasil as $unitPelayanan => $nilai){
-  		// 	$hasil[$unitPelayanan] = $nilai*0.071;
-  		// }
-
-
-      foreach ($hasil as $unitPelayanan => $nilai){
-        $hasil[$unitPelayanan] = $nilai*0.071;
-      }
-
-
-  		// foreach ($nilaiUnsurPelayanan as $unsurPelayanan){
-  		// 	$result += $unsurPelayanan*0.071;
-  		// }
-
-  		return $hasil;
-  	}
+      //   $hasil[$unitPelayanan] = $nilai*0.071;
+      // }
+      //
+      //
+  		// // foreach ($nilaiUnsurPelayanan as $unsurPelayanan){
+  		// // 	$result += $unsurPelayanan*0.071;
+  		// // }
+      //
+  		// return $hasil;
+  	// }
 
     public function simpulan(){
-  		$nilai = $this->hitungNilai();
+  		// $nilai = $this->hitungNilai();
   		$nilai = $nilai * 25;
       //
   		if($nilai >= 0 && $nilai <= 43.75){

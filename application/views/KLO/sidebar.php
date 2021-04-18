@@ -39,13 +39,13 @@
               <p>Atribut Penilaian</p>
             </a>
         </li>
+        <li class="nav-header">Data Mining</li>
         <li class="nav-item">
           <a href="<?php echo base_url('klo_jawaban')?>" class="nav-link">
             <i class="fas fa-chart-line"></i>
             <p>Hasil Survey Nasabah</p>
           </a>
         </li>
-        <li class="nav-header">Data Mining</li>
         <li class="nav-item">
           <a href="<?php echo base_url('klo_total')?>" class="nav-link">
             <i class="fas fa-chart-line"></i>
