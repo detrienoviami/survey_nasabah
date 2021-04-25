@@ -177,19 +177,19 @@ class M_Total extends CI_Model{
 		    return $hasil;
     }
 
-    // public function hitungNilai() {
-  		// $nilaiUnsurPelayanan = $this->hitung_entropy();
-  		// $result = 0;
-      // //var_dump($nilaiUnsurPelayanan);
-      // $hasil=array(
-      //   'sp' => 0,
-      //   'p' => 0,
-      //   'cp' => 0,
-      //   'tp' => 0,
-      //   'stp' => 0,
-      //   // '' => 0,
-      // );
-      //
+    public function hitungNilai() {
+  		$nilaiUnsurPelayanan = $this->hitung_entropy();
+  		$result = 0;
+      //var_dump($nilaiUnsurPelayanan);
+      $hasil=array(
+        'sp' => 0,
+        'p' => 0,
+        'cp' => 0,
+        'tp' => 0,
+        'stp' => 0,
+        // '' => 0,
+      );
+
       // foreach ($nilaiUnsurPelayanan as $kuisioner){
       //
       //   foreach ($kuisioner as $pelayanan => $nilai){
@@ -198,27 +198,27 @@ class M_Total extends CI_Model{
       //     }
       //   }
       // }
-      //
-      // // foreach ($hasil as $unitPelayanan => $nilai){
-  		// // 	$hasil[$unitPelayanan] = $nilai*0.071;
-  		// // }
-      //
-      //
+
+      // foreach ($hasil as $unitPelayanan => $nilai){
+  		// 	$hasil[$unitPelayanan] = $nilai*0.071;
+  		// }
+
+
       // foreach ($hasil as $unitPelayanan => $nilai){
       //   $hasil[$unitPelayanan] = $nilai*0.071;
       // }
-      //
-      //
-  		// // foreach ($nilaiUnsurPelayanan as $unsurPelayanan){
-  		// // 	$result += $unsurPelayanan*0.071;
-  		// // }
-      //
-  		// return $hasil;
-  	// }
+
+
+  		foreach ($nilaiUnsurPelayanan as $unsurPelayanan){
+  			$result += $unsurPelayanan*0.071;
+  		}
+
+  		return $result;
+  	}
 
     public function simpulan(){
-  		// $nilai = $this->hitungNilai();
-  		$nilai = $nilai * 25;
+  	  $nilais = $this->hitungNilai();
+  		$nilai = $nilais * 25;
       //
   		if($nilai >= 0 && $nilai <= 43.75){
   			$result['mutu'] = 'D';

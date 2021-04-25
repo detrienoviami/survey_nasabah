@@ -18,7 +18,7 @@ class KLO_total extends CI_Controller {
 		$data['total'] = $this->M_Total->get_db();
 		$data['entrophy'] = $this->M_Total->hitung_entropy();
 		// var_dump($data['entrophy']);
-		// $data['gain'] = $this->M_Total->hitungNilai();
+		$data['gain'] = $this->M_Total->hitungNilai();
 		$data['kesimpulan'] = $this->M_Total->simpulan();
 
 		var_dump($data['gain']);
