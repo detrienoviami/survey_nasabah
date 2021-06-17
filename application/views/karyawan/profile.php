@@ -18,32 +18,22 @@
     <div class="container-fluid">
       <div class="card">
         <div class="card-body">
-          <div style="float: right;">
-              <button type="button" class="btn btn-sm btn-primary" id="btn_add" onclick="add_data()">
-              <i class="fa fa-plus"></i> Tambah Data</button>
-          </div>
-          <br><br>
-          <div class="table table-responsive">
-              <table class="table table-bordered table-striped" id="show_table">
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Id User</th>
-                    <th>NIP</th>
-                    <th>Nama</th>
-                    <th>Tanggal Lahir</th>
-                    <th>E-mail</th>
-                    <th>Agama</th>
-                    <th>Alamat</th>
-                    <th>No Hp</th>
-                    <!-- <th>Level</th> -->
-                    <th>Status</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-              </table>
+          <div class="col-sm-12">
+            <div class="form-group">
+                <label for="nip">NIP</label>
+                <span class="help-block text-black"><?php echo $this->session->userdata('nip')?></span>
+            </div>
+            <div class="form-group">
+                <label for="nama">Nama Lengkap</label>
+                <span class="help-block text-black"><?php echo $this->session->userdata('nama')?></span></span>
+            </div>
           </div>
         </div>
+        <div class="text-center mt-5 mb-3">
+          <button type="button" class="btn btn-sm btn-warning" id="btn_save" onclick="ajax_save()">Edit Profile</button>
+          <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Edit Password</button>
+        </div>
+
       </div>
     </div>
   </section>
@@ -53,7 +43,7 @@
     <div class="modal-content">
       <div class="modal-header no-bd">
           <h5 class="modal-title">
-              <span class="fw-mediumbold">Tambah Data Karyawan</span>
+              <span class="fw-mediumbold">Edit Password</span>
           </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -65,53 +55,8 @@
           <div class="row">
             <div class="col-sm-12">
               <div class="form-group">
-                  <label for="id_user">Id User</label>
-                  <input type="int" class="form-control" id="id_user" name="id_user" placeholder="Id User">
-                  <span class="help-block text-danger"></span>
-              </div>
-              <div class="form-group">
-                  <label for="nip">NIP</label>
-                  <input type="int" class="form-control" id="nip" name="nip" placeholder="NIP">
-                  <span class="help-block text-danger"></span>
-              </div>
-              <div class="form-group">
-                  <label for="nama">Nama</label>
-                  <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama">
-                  <span class="help-block text-danger"></span>
-              </div>
-              <div class="form-group">
-                  <label for="tgl_lahir">Tanggal Lahir</label>
-                  <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" placeholder="Tanggal Lahir">
-                  <span class="help-block text-danger"></span>
-              </div>
-              <div class="form-group">
-                  <label for="email">E-mail</label>
-                  <input type="email" class="form-control" id="email" name="email" placeholder="E-mail">
-                  <span class="help-block text-danger"></span>
-              </div>
-              <div class="form-group">
-                  <label for="agama">Agama</label>
-                  <input type="text" class="form-control" id="agama" name="agama" placeholder="Agama">
-                  <span class="help-block text-danger"></span>
-              </div>
-              <div class="form-group">
-                  <label for="alamat">Alamat</label>
-                  <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat">
-                  <span class="help-block text-danger"></span>
-              </div>
-              <div class="form-group">
-                  <label for="no_hp">No Handphone</label>
-                  <input type="text" class="form-control" id="no_hp" name="no_hp" placeholder="No Handphone">
-                  <span class="help-block text-danger"></span>
-              </div>
-              <!-- <div class="form-group">
-                  <label for="level">Level</label>
-                  <input type="text" class="form-control" id="level" name="level" placeholder="Level">
-                  <span class="help-block text-danger"></span>
-              </div> -->
-              <div class="form-group">
-                  <label for="status">Status</label>
-                  <input type="text" class="form-control" id="status" name="status" placeholder="Status">
+                  <label for="kuisioner">Kuisioner</label>
+                  <input type="text" class="form-control" id="kuisioner" name="kuisioner" placeholder="Kuisioner">
                   <span class="help-block text-danger"></span>
               </div>
             </div>
@@ -134,7 +79,7 @@ var save_method; //for save method string
 // var base_url = '<?php echo base_url();?>';
 
 $(document).ready(function() {
-//datatables
+datatables
 table = $('#show_table').DataTable({
     "processing": true, //Feature control the processing indicator.
     "serverSide": true, //Feature control DataTables' server-side processing mode.
@@ -142,7 +87,7 @@ table = $('#show_table').DataTable({
     "order": [], //Initial no order.
     // Load data for the table's content from an Ajax source
     "ajax": {
-        "url": "<?php echo site_url('KLO_karyawan/datatables')?>",
+        "url": "<?php echo site_url('KLO_kuisioner/datatables')?>",
         "type": "POST"
     },
 
@@ -165,14 +110,12 @@ $('.datepicker').datepicker({
 });
 });
 
-function reload_table()
-{
-    table.ajax.reload(null,false); //reload datatable ajax
+// function reload_table()
+// {
+//     table.ajax.reload(null,false); //reload datatable ajax
+// }
 
-}
-
-function add_data()
-{
+function add_data(){
     save_method = 'add'; // sebagai kunci untuk menentukan dia save data / update data
 
     $('#form_create')[0].reset();
@@ -195,9 +138,9 @@ function ajax_save()
     // selain itu di anggap edit/update data
 
     if(save_method == 'add') {
-        url = "<?php echo site_url('KLO_karyawan/tambah')?>"; // url untuk tambah data
+        url = "<?php echo site_url('KLO_kuisioner/tambah')?>"; // url untuk tambah data
     } else {
-        url = "<?php echo site_url('KLO_karyawan/update')?>"; // url untuk update data
+        url = "<?php echo site_url('KLO_kuisioner/update')?>"; // url untuk update data
     }
     var formData = new FormData($('#form_create')[0]); // untuk menampung hasil inputan yang di simpan untuk di kirim ke controller
 
@@ -230,7 +173,6 @@ function ajax_save()
                     $('[name="'+data.inputerror[i]+'"]').parent().parent().addClass('has-error'); //select parent twice to select div form-group class and add has-error class
                     $('[name="'+data.inputerror[i]+'"]').next().text(data.error_string[i]); //select span help-block class set text error string
                 }
-
             }
 
             $('#btn_save').text('Save'); //change button text
@@ -244,6 +186,7 @@ function ajax_save()
                     title: 'Data gagal disimpan/gagal diupdate',
                     message: "<?php echo $this->session->flashdata('success'); ?>",
                     position: 'topRight'
+
             });
 
             $('#btn_save').text('Save'); //change button text
@@ -261,7 +204,7 @@ function ajax_edit(id)
     $('.help-block').empty(); // jika ada inputan yang tidak sesuai / validasi
 
     $.ajax({
-        url : "<?php echo site_url('KLO_karyawan/edit')?>/" + id, // ini url edit data untuk meload data dari database(controller) ke view
+        url : "<?php echo site_url('KLO_kuisioner/edit')?>/" + id, // ini url edit data untuk meload data dari database(controller) ke view
         type: "GET",
         dataType: "JSON",
         success: function(data)
@@ -270,7 +213,8 @@ function ajax_edit(id)
             // jika berhasil menampilkan data dari database
 
             $('[name="id_user"]').val(data.id_user);
-            $('[name="karyawan"]').val(data.karyawan);
+            $('[name="kuisioner"]').val(data.kuisioner);
+
             $('#modal-create').modal('show'); // munculkan form/kotak modal
             $('.modal-title').text('Edit Data'); // judul form modal
 
@@ -284,6 +228,7 @@ function ajax_edit(id)
                     title: 'Gagal menampilkan data dari database',
                     message: "<?php echo $this->session->flashdata('success'); ?>",
                     position: 'topRight'
+
             });
             // alert('Error get data from ajax');
         }
@@ -293,6 +238,7 @@ function ajax_edit(id)
 
 function ajax_delete(id)
 {
+
     iziToast.question({
         timeout: 20000,
         close: false,
@@ -306,7 +252,7 @@ function ajax_delete(id)
         buttons: [
             ['<button><b>Hapus</b></button>', function (instance, toast) {
                 $.ajax({
-                    url : "<?php echo site_url('KLO_karyawan/destroy')?>/"+id, // url untuk menghapus data dari controller
+                    url : "<?php echo site_url('KLO_kuisioner/destroy')?>/"+id, // url untuk menghapus data dari controller
                     type: "POST",
                     dataType: "JSON",
                     success: function(data)

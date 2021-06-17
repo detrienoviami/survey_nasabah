@@ -1,5 +1,5 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-  <a href="<?php echo base_url('dashboard')?>" class="brand-link">
+  <a href="<?php echo base_url('karyawan_profile')?>" class="brand-link">
     <img src="<?= base_url()?>assets/img/LogoBCA.jpg" alt="" class="brand-image img-circle elevation-2"
          style="opacity: .8">
     <span class="brand-text font-weight-light"><?php echo $this->session->userdata('nama')?></span>
@@ -20,6 +20,12 @@
     </div> -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item">
+            <a href="<?php echo base_url('dashboard')?>" class="nav-link">
+              <i class="fas fa-home"></i>
+              <p>Beranda</p>
+            </a>
+        </li>
         <li class="nav-header">Master Data</li>
         <li class="nav-item">
             <a href="<?php echo base_url('klo_karyawan')?>" class="nav-link">
@@ -39,25 +45,31 @@
               <p>Atribut Penilaian</p>
             </a>
         </li>
+        <li class="nav-header">Data Mining</li>
         <li class="nav-item">
           <a href="<?php echo base_url('klo_jawaban')?>" class="nav-link">
             <i class="fas fa-chart-line"></i>
             <p>Hasil Survey Nasabah</p>
           </a>
         </li>
-        <li class="nav-header">Data Mining</li>
         <li class="nav-item">
-          <a href="<?php echo base_url('klo_total')?>" class="nav-link">
-            <i class="fas fa-chart-line"></i>
-            <p>Kelompok Nilai</p>
-          </a>
-        </li>
-        <li class="nav-item">
-            <a href="<?php echo base_url('klo_datamining')?>" class="nav-link">
+            <a href="<?php echo base_url('klo_total')?>" class="nav-link">
               <i class="fas fa-database"></i>
               <p>Algoritma C45</p>
             </a>
         </li>
+        <!-- <li class="nav-item">
+          <a href="<?php echo base_url('klo_total')?>" class="nav-link">
+            <i class="fas fa-chart-line"></i>
+            <p>Kelompok Nilai</p>
+          </a>
+        </li> -->
+        <!-- <li class="nav-item">
+            <a href="<?php echo base_url('klo_datamining')?>" class="nav-link">
+              <i class="fas fa-database"></i>
+              <p>Algoritma C45</p>
+            </a>
+        </li> -->
         <li class="nav-item">
           <a href="<?php echo base_url('klo_pohonkeputusan')?>" class="nav-link">
             <i class="fas fa-chart-line"></i>

@@ -14,9 +14,9 @@ class MKLO_Atribut extends CI_Model{
 
     private function _get_datatables_query()
     {
-
         $this->db->from($this->table);
         $i = 0;
+
         foreach ($this->column_search as $item) // looping awal
         {
             if($_POST['search']['value']) // jika datatable mengirimkan pencarian dengan metode POST

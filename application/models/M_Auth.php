@@ -15,6 +15,7 @@ class M_Auth extends CI_Model{
   $data = [
     'nama' => $this->input->post('nama', true),
     'username' => $this->input->post('username', true),
+    // 'level' => $this->input->post('level', true),
     'password' => password_hash($this->input->post('password1'),PASSWORD_DEFAULT),
   ];
   $this->db->insert('t_user', $data);

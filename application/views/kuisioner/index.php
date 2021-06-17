@@ -165,8 +165,8 @@
                                         <td><input type='radio' name='jawaban<?=$i?>' value='5' required /> Sangat Puas</td>
                                         <?php endif; ?>
                                         <?php if ($soal->id_kuisioner == '5'): ?>
-                                          <td><input type='radio' name='jawaban<?=$i?>' value='1' required /> YA</td>
-                                          <td><input type='radio' name='jawaban<?=$i?>' value='2' required /> Tidak</td>
+                                          <td><input type='radio' name='jawaban<?=$i?>' value='5' required /> Ya</td>
+                                          <td><input type='radio' name='jawaban<?=$i?>' value='1' required /> Tidak</td>
                                         <?php endif; ?>
                                       </tr>
                                   <?php $i++;} ?>

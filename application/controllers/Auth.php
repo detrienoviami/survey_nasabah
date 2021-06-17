@@ -35,10 +35,10 @@ class Auth extends CI_Controller {
 				// cek password
           if(password_verify($password, $user['password'])){
             $data = [
-                'id_user' => $user['id_user'],
-                'username' => $user['username'],
-                'nama' => $user['nama'],
-                'level' => $user['level']
+                'id_user'   => $user['id_user'],
+                'username'  => $user['username'],
+                'nama'      => $user['nama'],
+                // 'level'     => $user['level']
             ];
             $this->session->set_userdata($data);
             if($user['level'] == 'KLO')
@@ -47,6 +47,14 @@ class Auth extends CI_Controller {
             }else{
               redirect('dashboard');
             }
+
+            // $this->session->set_userdata($data);
+            // if($user['level'] == 'Teller')
+            // {
+            //   redirect('karyawan/karywan');
+            // }else{
+            //   redirect('auth');
+            // }
 
         }else{
   					$this->session->set_flashdata('message','Password Salah');
@@ -69,6 +77,7 @@ class Auth extends CI_Controller {
     $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required');
     $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[t_user.username]',[
       'is_unique' => 'Username Ini Sudah digunakan!!!']);
+    // $this->form_validation->set_rules('level', 'Level', 'required');
     $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[6]|matches[password2]',[
 			'matches' => 'Password Tidak Sesuai!',
 			'min_length' => 'Password Terlalu Pendek!'
@@ -225,9 +234,6 @@ class Auth extends CI_Controller {
 		redirect('auth');
 
 	}
-
-
-
 }
 
 ?>

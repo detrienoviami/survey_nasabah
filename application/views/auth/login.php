@@ -36,13 +36,13 @@
                             <div class="icheckbox_square-blue" style="position: relative;">
                               <input type="checkbox" name="remember" value="1" class="checkbox" id="remember" />
                               <ins class="iCheck-helper"></ins>
+                              Remember me
                             </div>
-                            Remember me
                         </label>
                     </div>
                 </div>
                 <div class="col-xs-4">
-                    <input type="submit" name="login" value="Login" class="btn btn-primary btn-block btn-flat">
+                    <input type="submit" name="login" value="Login" class="btn btn-primary float-right">
                 </div>
             </div>
             <p>Tidak punya akun?

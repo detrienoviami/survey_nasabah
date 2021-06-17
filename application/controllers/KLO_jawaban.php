@@ -6,14 +6,14 @@ class KLO_jawaban extends CI_Controller {
   {
     parent::__construct();
     $this->load->model('MKLO_Jawaban');
-		$this->load->model('M_Kuisioner');
+		$this->load->model('MKLO_Kuisioner');
     $this->load->library('form_validation');
   }
 
 	public function index()
 	{
-		$data['title']	= 'Hasil Survey Nasabah';
-		$data['content'] = 'KLO/jawaban.php';
+		$data['title']	 	= 'Hasil Survey Nasabah';
+		$data['content'] 	= 'KLO/jawaban.php';
 		$this->load->view('klo/main_admin',$data);
 		// $this->load->view('template',$data);
 		// $this->load->view('templates/admin/main_admin',$data);

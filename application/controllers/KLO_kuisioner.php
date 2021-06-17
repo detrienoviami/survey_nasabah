@@ -6,7 +6,6 @@ class KLO_kuisioner extends CI_Controller {
   {
     parent::__construct();
     $this->load->model('MKLO_Kuisioner');
-		$this->load->model('M_Kuisioner');
     $this->load->library('form_validation');
   }
 
@@ -17,13 +16,13 @@ class KLO_kuisioner extends CI_Controller {
 		$this->load->view('klo/main_admin',$data);
 		// $this->load->view('templates/admin/main_admin',$data);
     // $data['judul'] = "Kuisioner";
-		// $data['kuisioner'] = $this->M_Kuisioner->getKuisioner();
+		// $data['kuisioner'] = $this->MKLO_Kuisioner->getKuisioner();
 		// $this->template->load('template','KLO/kuisioner', $data);
 	}
 
 	public function datatables()
     {
-	    $kuisioner = $this->M_Kuisioner->get_datatables();
+	    $kuisioner = $this->MKLO_Kuisioner->get_datatables();
 	    // echo "<pre>";
 	    // print_r($kuisioner);die();
 	    $data = array();
@@ -49,8 +48,8 @@ class KLO_kuisioner extends CI_Controller {
 
 	    $output = array(
         "draw" => $_POST['draw'],
-        "recordsTotal" => $this->M_Kuisioner->count_all(),
-        "recordsFiltered" => $this->M_Kuisioner->count_filtered(),
+        "recordsTotal" => $this->MKLO_Kuisioner->count_all(),
+        "recordsFiltered" => $this->MKLO_Kuisioner->count_filtered(),
         "data" => $data,
 	    );
 
@@ -60,21 +59,16 @@ class KLO_kuisioner extends CI_Controller {
 
     public function tambah()
     {
-
       $data = array(
           'kuisioner' => $this->input->post('kuisioner')
       );
-
-      $insert = $this->M_Kuisioner->save($data); // simpan data ke model
-
+      $insert = $this->MKLO_Kuisioner->save($data); // simpan data ke model
       echo json_encode(array('status' => TRUE)); // akan muncul notif ini di kirim ke view, function ajax_save()
-
     }
 
     public function edit($id)
     {
-        $data = $this->M_Kuisioner->edit_by_id($id); // get data dari database melalui model
-
+        $data = $this->MKLO_Kuisioner->edit_by_id($id); // get data dari database melalui model
         echo json_encode($data);
     }
 
@@ -84,20 +78,16 @@ class KLO_kuisioner extends CI_Controller {
         $data = array(
             'kuisioner' => $this->input->post('kuisioner'),
         );
-
         $id = array('id_kuisioner' => $this->input->post('id_kuisioner'));
-
-        $this->M_Kuisioner->update($id, $data);
+        $this->MKLO_Kuisioner->update($id, $data);
 
         echo json_encode(array("status" => TRUE));
     }
 
     public function destroy($id)
     {
-        $data = $this->M_Kuisioner->edit_by_id($id); // get id dari database melalui model
-
-        $this->M_Kuisioner->delete_by_id($id);
-
+        $data = $this->MKLO_Kuisioner->edit_by_id($id); // get id dari database melalui model
+        $this->MKLO_Kuisioner->delete_by_id($id);
         echo json_encode(array("status" => TRUE));
     }
 

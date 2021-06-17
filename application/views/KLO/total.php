@@ -18,97 +18,10 @@
     <div class="container-fluid">
       <div class="card">
         <div class="card-body">
-          <div class="table table-responsive">
-              <table class="table table-bordered table-striped" >
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Id Kuisioner</th>
-                    <th>Sangat Tidak Puas</th>
-                    <th>Tidak Puas</th>
-                    <th>Cukup Puas</th>
-                    <th>Puas</th>
-                    <th>Sangat Puas</th>
-                  </tr>
-                </thead>
-                <tbody>
+          <!-- <div class="table table-responsive"> -->
 
-                    <?php
-
-
-                      $i=1;
-                     foreach ($total as  $field){ ?>
-                     <tr>
-                       <td><?php echo $i ?></td>
-
-                         <td><?php echo $field['id_kuisioner'] ?><input type="hidden" value=<?php echo $field['id_kuisioner'] ?> name='id_kuisioner'/></td>
-
-                         <td><?php echo $field['stp'] ?><input type="hidden" value=<?php echo $field['stp'] ?> name='stp'/></td>
-
-
-
-                         <td><?php echo $field['tp'] ?><input type="hidden" value=<?php echo $field['tp'] ?> name='tp'/></td>
-
-
-                         <td><?php echo $field['cp'] ?><input type="hidden" value=<?php echo $field['cp'] ?> name='cp'/></td>
-
-
-                         <td><?php echo $field['p'] ?><input type="hidden" value=<?php echo $field['p'] ?> name='p'/></td>
-
-
-                         <td><?php echo $field['sp'] ?><input type="hidden" value=<?php echo $field['sp'] ?> name='sp'/></td>
-
-
-                     </tr>
-                    <?php $i++;} ?>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th colspan="2" scope="row">Entrophy</th>
-
-                           <td><?php echo $entrophy['stp'] ?><input type="hidden" value=<?php echo $entrophy['stp'] ?> name='stp'/></td>
-
-
-
-                           <td><?php echo $entrophy['tp'] ?><input type="hidden" value=<?php echo $entrophy['tp'] ?> name='tp'/></td>
-
-
-                           <td><?php echo $entrophy['cp'] ?><input type="hidden" value=<?php echo $entrophy['cp'] ?> name='cp'/></td>
-
-
-                           <td><?php echo $entrophy['p'] ?><input type="hidden" value=<?php echo $entrophy['p'] ?> name='p'/></td>
-
-
-                           <td><?php echo $entrophy['sp'] ?><input type="hidden" value=<?php echo $entrophy['sp'] ?> name='sp'/></td>
-
-                    </tr>
-                    <tr>
-                        <th colspan="2" scope="row">Gain</th>
-                        <td><?php echo $gain['stp'] ?><input type="hidden" value=<?php echo $gain['stp'] ?> name='stp'/></td>
-
-
-
-                        <td><?php echo $gain['tp'] ?><input type="hidden" value=<?php echo $gain['tp'] ?> name='tp'/></td>
-
-
-                        <td><?php echo $gain['cp'] ?><input type="hidden" value=<?php echo $gain['cp'] ?> name='cp'/></td>
-
-
-                        <td><?php echo $gain['p'] ?><input type="hidden" value=<?php echo $gain['p'] ?> name='p'/></td>
-
-
-                        <td><?php echo $gain['sp'] ?><input type="hidden" value=<?php echo $gain['sp'] ?> name='sp'/></td>
-                    </tr>
-                    <tr>
-
-                        <th colspan="2" scope="row">Kesimpulan</th>
-                        <td colspan="5" class="text-center"><?php echo $kesimpulan['kinerja'] ?><input type="hidden" value=<?php echo $kesimpulan['kinerja']?> name='kesimpulan'/></td>
-
-                    </tr>
-                </tfoot>
-              </table>
-              <!-- <div class="table table-responsive">
-                  <table class="table table-bordered table-striped" id="show_table">
+              <div class="table table-responsive">
+                  <table class="table table-bordered table-striped" id="">
                     <thead>
                       <tr>
                         <th>No</th>
@@ -118,16 +31,52 @@
                         <th>Cukup Puas</th>
                         <th>Puas</th>
                         <th>Sangat Puas</th>
-                        <th>Entrophy</th>
-                        <th>Gain</th>
-                        <th>total</th>
-                        <th>aksi</th>
                       </tr>
                     </thead>
+                    <tbody>
+                        <?php
+                          $i=1;
+                         foreach ($total as  $field){ ?>
+                         <tr>
+                           <td><?php echo $i ?></td>
+                             <td><?php echo $field['atribut'] ?><input type="hidden" value=<?php echo $field['atribut'] ?> name='atribut'/></td>
+                             <td><?php echo $field['stp'] ?><input type="hidden" value=<?php echo $field['stp'] ?> name='stp'/></td>
+                             <td><?php echo $field['tp'] ?><input type="hidden" value=<?php echo $field['tp'] ?> name='tp'/></td>
+                             <td><?php echo $field['cp'] ?><input type="hidden" value=<?php echo $field['cp'] ?> name='cp'/></td>
+                             <td><?php echo $field['p'] ?><input type="hidden" value=<?php echo $field['p'] ?> name='p'/></td>
+                             <td><?php echo $field['sp'] ?><input type="hidden" value=<?php echo $field['sp'] ?> name='sp'/></td>
+                         </tr>
+                        <?php $i++;} ?>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="2" scope="row">Entrophy</th>
+                               <td><?php echo $entrophy['stp'] ?><input type="hidden" value=<?php echo $entrophy['stp'] ?> name='stp'/></td>
+                               <td><?php echo $entrophy['tp'] ?><input type="hidden" value=<?php echo $entrophy['tp'] ?> name='tp'/></td>
+                               <td><?php echo $entrophy['cp'] ?><input type="hidden" value=<?php echo $entrophy['cp'] ?> name='cp'/></td>
+                               <td><?php echo $entrophy['p'] ?><input type="hidden" value=<?php echo $entrophy['p'] ?> name='p'/></td>
+                               <td><?php echo $entrophy['sp'] ?><input type="hidden" value=<?php echo $entrophy['sp'] ?> name='sp'/></td>
+                        </tr>
+                        <tr>
+                            <th colspan="2" scope="row">Gain</th>
+                            <!-- <td><?php echo $gain['stp'] ?><input type="hidden" value=<?php echo $gain['stp'] ?> name='stp'/></td>
+                            <td><?php echo $gain['tp'] ?><input type="hidden" value=<?php echo $gain['tp'] ?> name='tp'/></td>
+                            <td><?php echo $gain['cp'] ?><input type="hidden" value=<?php echo $gain['cp'] ?> name='cp'/></td>
+                            <td><?php echo $gain['p'] ?><input type="hidden" value=<?php echo $gain['p'] ?> name='p'/></td>
+                            <td><?php echo $gain['sp'] ?><input type="hidden" value=<?php echo $gain['sp'] ?> name='sp'/></td> -->
+                            <td colspan="5" class="text-center"><?php echo $gain ?><input type="hidden" value="<?php echo $gain ?>" name='kesimpulan'/></td>
+                        </tr>
+                        <tr>
+
+                            <th colspan="2" scope="row">Kesimpulan</th>
+                            <td colspan="5" class="text-center"><?php echo $kesimpulan['kinerja'] ?><input type="hidden" value=<?php echo $kesimpulan['kinerja']?> name='kesimpulan'/></td>
+
+                        </tr>
+                    </tfoot>
                 </table>
-              </div> -->
-              <button type="button" class="btn btn-sm btn-primary" id="btn_save" onclick="ajax_save()">Save</button>
-          </div>
+              </div>
+              <!-- <button type="button" class="btn btn-sm btn-primary" id="btn_save" onclick="ajax_save()">Save</button> -->
+          <!-- </div> -->
         </div>
       </div>
     </div>
