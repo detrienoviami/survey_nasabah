@@ -18,288 +18,181 @@
     <div class="container-fluid">
       <div class="card">
         <div class="card-body">
-          <div class="col-sm-12">
-            <div class="form-group">
-                <label for="nip">NIP</label>
-                <span class="help-block text-black"><?php echo $this->session->userdata('nip')?></span>
+          <!-- <?php if ($this->session->flashdata('message')): ?>
+              <?= $this->session->flashdata('message'); ?>
+          <?php endif; ?> -->
+          <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Edit Profile</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Ganti Password</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+              <?php if (empty($profile)): ?>
+                <div class="alert alert-warning" role="alert">
+                  Data Kosong!!!
+                </div>
+              <?php else: ?>
+                <form id="form_edit_profile" action="<?php echo base_url('karyawan_profile/edit_profile') ?>" method="post">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="nip">NIP</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" name="nip" id="nip" value="<?php echo $profile['nip'] ?>" class="form-control" readonly>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="nama">Nama</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" name="nama" id="nama" value="<?php echo $profile['nama'] ?>" class="form-control" required="true">
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="username">Username</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" name="username" id="username" value="<?php echo $profile['username'] ?>" class="form-control" required="true">
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="tgl_lahir">Tanggal Lahir</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="date" name="tgl_lahir" id="tgl_lahir" value="<?php echo $profile['tgl_lahir'] ?>" class="form-control" required="true">
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="email">E-mail</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="email" name="email" id="email" value="<?php echo $profile['email'] ?>" class="form-control" required="true">
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="agama">Agama</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" name="agama" id="agama" value="<?php echo $profile['agama'] ?>" class="form-control" required="true">
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="alamat">Alamat</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" name="alamat" id="alamat" value="<?php echo $profile['alamat'] ?>" class="form-control" required="true">
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="no_hp">No Telp / No Handphone</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="number" name="no_hp" id="no_hp" value="<?php echo $profile['no_hp'] ?>" class="form-control" required="true">
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-center mt-5 mb-3">
+                    <button type="submit" class="btn btn-sm btn-primary" id="btn_edit_profile">Simpan Perubahan Profile</button>
+                  </div>
+                </form>
+
+              <?php endif; ?>
+
             </div>
-            <div class="form-group">
-                <label for="nama">Nama Lengkap</label>
-                <span class="help-block text-black"><?php echo $this->session->userdata('nama')?></span></span>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                <form action="<?php echo base_url('karyawan_profile/edit_password') ?>" method="post">
+                  <div class="row">
+                      <div class="col-sm-12">
+                        <div class="form-group">
+                          <div class="row">
+                              <div class="col-md-2">
+                                  <label for="username">Username</label>
+                              </div>
+                              <div class="col-md-4">
+                                  <input type="text" name="username" id="username" value="<?php echo $profile['username'] ?>" class="form-control" readonly>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-12">
+                        <div class="form-group">
+                          <div class="row">
+                              <div class="col-md-2">
+                                  <label for="password1">Password</label>
+                              </div>
+                              <div class="col-md-4">
+                                  <input type="password" name="password1" id="password1" class="form-control" required>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-12">
+                        <div class="form-group">
+                          <div class="row">
+                              <div class="col-md-2">
+                                  <label for="password2">Ulangi Password</label>
+                              </div>
+                              <div class="col-md-4">
+                                  <input type="password" name="password2" id="password2" class="form-control" required>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="text-center mt-5 mb-3">
+                    <button type="submit" class="btn btn-sm btn-primary" id="btn_edit_password">Simpan Password</button>
+                  </div>
+                </form>
             </div>
           </div>
         </div>
-        <div class="text-center mt-5 mb-3">
-          <button type="button" class="btn btn-sm btn-warning" id="btn_save" onclick="ajax_save()">Edit Profile</button>
-          <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Edit Password</button>
-        </div>
-
       </div>
     </div>
   </section>
 </div>
-<div class="modal fade" id="modal-create" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header no-bd">
-          <h5 class="modal-title">
-              <span class="fw-mediumbold">Edit Password</span>
-          </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-          </button>
-      </div>
-      <div class="modal-body">
-        <form method="POST" id="form_create" class="form_create">
-          <input type="hidden" class="form-control" id="id_user" name="id_user">
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="form-group">
-                  <label for="kuisioner">Kuisioner</label>
-                  <input type="text" class="form-control" id="kuisioner" name="kuisioner" placeholder="Kuisioner">
-                  <span class="help-block text-danger"></span>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer no-bd">
-          <button type="button" class="btn btn-sm btn-primary" id="btn_save" onclick="ajax_save()">Save</button>
-          <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <script src="<?php echo base_url()?>assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-<script type="text/javascript">
-
-var table;
-var save_method; //for save method string
-// var base_url = '<?php echo base_url();?>';
-
-$(document).ready(function() {
-datatables
-table = $('#show_table').DataTable({
-    "processing": true, //Feature control the processing indicator.
-    "serverSide": true, //Feature control DataTables' server-side processing mode.
-    // "pagination": true,
-    "order": [], //Initial no order.
-    // Load data for the table's content from an Ajax source
-    "ajax": {
-        "url": "<?php echo site_url('KLO_kuisioner/datatables')?>",
-        "type": "POST"
-    },
-
-    //Set column definition initialisation properties.
-    "columnDefs": [
-      {
-          "targets": [0], //last column
-          "orderable": false, //set not orderable
-      },
-    ],
-});
-
-$('.datepicker').datepicker({
-    autoclose: true,
-    format: "yyyy-mm-dd",
-    todayHighlight: true,
-    orientation: "top auto",
-    todayBtn: true,
-    todayHighlight: true,
-});
-});
-
-// function reload_table()
-// {
-//     table.ajax.reload(null,false); //reload datatable ajax
-// }
-
-function add_data(){
-    save_method = 'add'; // sebagai kunci untuk menentukan dia save data / update data
-
-    $('#form_create')[0].reset();
-
-    $('#modal-create').modal('show'); // untuk menampilkan modal dengan memanggil id modal
-    $('.modal-title').text('Add Data'); // untuk memberi judul pada modal
-
-    $('.form-group').removeClass('has-error'); // untuk menampilkan pesan error / validasi pada modal
-    $('.help-block').empty(); // untuk menampilkan pesan error / validasi pada modal
-
-}
-
-function ajax_save()
-{
-    var url; // variable url
-
-    $('#btn_save').text('saving...'); //change button text
-    $('#btn_save').attr('disabled',true); //set button disable
-    // cek kondisi save method, jika save_method nya == add maka dia adalah tambah data
-    // selain itu di anggap edit/update data
-
-    if(save_method == 'add') {
-        url = "<?php echo site_url('KLO_kuisioner/tambah')?>"; // url untuk tambah data
-    } else {
-        url = "<?php echo site_url('KLO_kuisioner/update')?>"; // url untuk update data
-    }
-    var formData = new FormData($('#form_create')[0]); // untuk menampung hasil inputan yang di simpan untuk di kirim ke controller
-
-    $.ajax({
-        url : url,
-        type: "POST",
-        data: formData,
-        contentType : false,
-        processData : false,
-        dataType: "JSON",
-        success: function(data)
-        {
-            // jika data berhasil disimpan
-            if(data.status) //if success close modal and reload ajax table
-            {
-                iziToast.success({ //tampilkan notif data berhasil disimpan pada posisi kanan bawah
-                    title: 'Data Berhasil ditambahkan',
-                    message: "<?php echo $this->session->flashdata('success'); ?>",
-                    position: 'topRight'
-                });
-
-                $('#modal-create').modal('hide'); // hidden kotak modal
-                reload_table(); // untuk reload table otomatis setelah tambah data
-            }else{
-
-                // ini untuk data yang tidak sesuai atau kena validasi
-
-                for (var i = 0; i < data.inputerror.length; i++)
-                {
-                    $('[name="'+data.inputerror[i]+'"]').parent().parent().addClass('has-error'); //select parent twice to select div form-group class and add has-error class
-                    $('[name="'+data.inputerror[i]+'"]').next().text(data.error_string[i]); //select span help-block class set text error string
-                }
-            }
-
-            $('#btn_save').text('Save'); //change button text
-            $('#btn_save').attr('disabled',false); //set button enable
-        },
-        error: function (jqXHR, textStatus, errorThrown)
-        {
-            // ini notif ketika data gagal di input atau gagal di update
-
-            iziToast.error({ //tampilkan iziToast dengan notif data berhasil disimpan pada posisi kanan bawah
-                    title: 'Data gagal disimpan/gagal diupdate',
-                    message: "<?php echo $this->session->flashdata('success'); ?>",
-                    position: 'topRight'
-
-            });
-
-            $('#btn_save').text('Save'); //change button text
-            $('#btn_save').attr('disabled',false); //set button enable
-
-        }
-    });
-}
-
-function ajax_edit(id)
-{
-    save_method = 'update'; // variabel update
-    $('#form_create')[0].reset(); // reset inputan pada form / kotak modal
-    $('.form-group').removeClass('has-error'); // jika ada inputan yang tidak sesuai / validasi
-    $('.help-block').empty(); // jika ada inputan yang tidak sesuai / validasi
-
-    $.ajax({
-        url : "<?php echo site_url('KLO_kuisioner/edit')?>/" + id, // ini url edit data untuk meload data dari database(controller) ke view
-        type: "GET",
-        dataType: "JSON",
-        success: function(data)
-        {
-
-            // jika berhasil menampilkan data dari database
-
-            $('[name="id_user"]').val(data.id_user);
-            $('[name="kuisioner"]').val(data.kuisioner);
-
-            $('#modal-create').modal('show'); // munculkan form/kotak modal
-            $('.modal-title').text('Edit Data'); // judul form modal
-
-        },
-        error: function (jqXHR, textStatus, errorThrown)
-        {
-
-            // jika gagal menampilkan data dari database
-
-            iziToast.error({ //tampilkan iziToast dengan notif data berhasil disimpan pada posisi kanan bawah
-                    title: 'Gagal menampilkan data dari database',
-                    message: "<?php echo $this->session->flashdata('success'); ?>",
-                    position: 'topRight'
-
-            });
-            // alert('Error get data from ajax');
-        }
-    });
-}
-
-
-function ajax_delete(id)
-{
-
-    iziToast.question({
-        timeout: 20000,
-        close: false,
-        overlay: true,
-        displayMode: 'once',
-        id: 'question',
-        zindex: 999,
-        title: 'Data Akan dihapus?',
-        message: 'Jika sudah dihapus data tidak bisa dikembalikan !',
-        position: 'center',
-        buttons: [
-            ['<button><b>Hapus</b></button>', function (instance, toast) {
-                $.ajax({
-                    url : "<?php echo site_url('KLO_kuisioner/destroy')?>/"+id, // url untuk menghapus data dari controller
-                    type: "POST",
-                    dataType: "JSON",
-                    success: function(data)
-                    {
-                        //jika berhasil di hapus
-
-                        iziToast.success({ //tampilkan iziToast dengan notif data berhasil disimpan pada posisi kanan bawah
-                                title: 'Data berhasil dihapus',
-                                message: "<?php echo $this->session->flashdata('success'); ?>",
-                                position: 'topRight'
-
-                        });
-                        $('#modal-create').modal('hide');
-                        reload_table();
-                    },
-                    error: function (jqXHR, textStatus, errorThrown)
-                    {
-
-                        //jika gagal di hapus
-
-                        iziToast.warning({ //tampilkan iziToast dengan notif data berhasil disimpan pada posisi kanan bawah
-                                title: 'Data gagal dihapus',
-                                message: "<?php echo $this->session->flashdata('success'); ?>",
-                                position: 'topRight'
-
-                        });
-                        // alert('Error deleting data');
-                    }
-                });
-
-                instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
-
-            }, true],
-            ['<button>Batalkan</button>', function (instance, toast) {
-
-                instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
-
-            }],
-        ],
-        onClosing: function(instance, toast, closedBy){
-            console.info('Closing | closedBy: ' + closedBy);
-        },
-        onClosed: function(instance, toast, closedBy){
-            console.info('Closed | closedBy: ' + closedBy);
-        }
-    });
-}
-
-
-</script>
