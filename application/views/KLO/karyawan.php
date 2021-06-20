@@ -64,11 +64,11 @@
           <input type="hidden" class="form-control" id="id_user" name="id_user">
           <div class="row">
             <div class="col-sm-12">
-              <div class="form-group">
+              <!-- <div class="form-group">
                   <label for="id_user">Id User</label>
                   <input type="int" class="form-control" id="id_user" name="id_user" placeholder="Id User">
                   <span class="help-block text-danger"></span>
-              </div>
+              </div> -->
               <div class="form-group">
                   <label for="nip">NIP</label>
                   <input type="int" class="form-control" id="nip" name="nip" placeholder="NIP">

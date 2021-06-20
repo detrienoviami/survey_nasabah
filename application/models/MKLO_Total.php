@@ -139,21 +139,50 @@ class MKLO_Total extends CI_Model{
       return $query->result_array();
     }
 
+    public function count(){
+      $countJawaban = $this->countJawaban();
+      $jumlahResponden = count($countJawaban);
+      return $jumlahResponden;
+    }
+
+    public function count_layanan(){
+      $this->db->select('t_total.*,t_kuisioner.atribut,t_kuisioner.id_kuisioner,t_kuisioner_result.jawaban,
+                        sum(case when t_kuisioner_result.jawaban=5 then 1 else 0 end) as sp,
+                        sum(case when t_kuisioner_result.jawaban=4 then 1 else 0 end) as p,
+                        sum(case when t_kuisioner_result.jawaban=3 then 1 else 0 end) as cp,
+                        sum(case when t_kuisioner_result.jawaban=2 then 1 else 0 end) as tp,
+                        sum(case when t_kuisioner_result.jawaban=1 then 1 else 0 end) as stp'
+                          );
+
+      $this->db->from('t_kuisioner');
+      $this->db->group_by('t_kuisioner.id_kuisioner');
+      $this->db->order_by('t_kuisioner.id_kuisioner', 'asc');
+      $this->db->join('t_kuisioner_result','t_kuisioner.id_kuisioner = t_kuisioner_result.id_kuisioner', 'left');
+      $this->db->join('t_total','t_kuisioner_result.id_kuisioner = t_total.id_kuisioner', 'left');
+      $this->db->where('t_kuisioner.atribut','Layanan');
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
+    public function entrophi(){
+
+    }
+
     public function hitung_entropy(){
       $listKuisioner = $this->get_db();
       $countJawaban = $this->countJawaban();
       $hasil=array(
-        'sp' => 0,
-				'p' => 0,
-				'cp' => 0,
-				'tp' => 0,
+        'sp'  => 0,
+				'p'   => 0,
+				'cp'  => 0,
+				'tp'  => 0,
 				'stp' => 0,
         // '' => 0,
       );
 
      $jumlahResponden = count($countJawaban);
-     $puas = 84;
-     $tidak_puas=17;
+     // $puas = 84;
+     // $tidak_puas=17;
       foreach ($listKuisioner as $kuisioner){
   			foreach ($kuisioner as $pelayanan => $nilai){
   				if(array_key_exists($pelayanan, $hasil)){
@@ -167,7 +196,6 @@ class MKLO_Total extends CI_Model{
         // $hasil[$unitPelayanan] = (-$puas/$nilai)*(log(2)*$puas/$nilai)+(-$tidak_puas/$nilai)*(log(2)*$tidak_puas/$nilai);
 
       }
-
 		    return $hasil;
     }
 
@@ -435,6 +463,189 @@ class MKLO_Total extends CI_Model{
 
         // $this->db->insert('t_kuisioner_result', $data);
         // $this->db->insert('t_kuisioner_result', $data);
+      }
+
+      public function get_db_waktupuas(){
+
+        $this->db->select('t_total.*,t_kuisioner.atribut,t_kuisioner.id_kuisioner,t_kuisioner_result.jawaban,
+                          sum(case when t_kuisioner_result.jawaban=5 then 1 else 0 end) as sp,
+                          sum(case when t_kuisioner_result.jawaban=4 then 1 else 0 end) as p,
+                          sum(case when t_kuisioner_result.jawaban=3 then 1 else 0 end) as cp,
+                          sum(case when t_kuisioner_result.jawaban=2 then 1 else 0 end) as tp,
+                          sum(case when t_kuisioner_result.jawaban=1 then 1 else 0 end) as stp'
+                            );
+
+        $this->db->from('t_kuisioner');
+        $this->db->group_by('t_kuisioner.id_kuisioner');
+        $this->db->order_by('t_kuisioner.id_kuisioner', 'asc');
+        $this->db->join('t_kuisioner_result','t_kuisioner.id_kuisioner = t_kuisioner_result.id_kuisioner', 'left');
+        $this->db->join('t_total','t_kuisioner_result.id_kuisioner = t_total.id_kuisioner', 'left');
+        $this->db->group_start();
+                $this->db->where('t_kuisioner.atribut', 'Waktu');
+                $this->db->or_group_start();
+                        $this->db->where('t_kuisioner.atribut', 'Layanan');
+                        $this->db->where('t_kuisioner_result.jawaban', '5');
+                $this->db->group_end();
+        $this->db->group_end();
+        //$this->db->where('t_kuisioner.atribut','Waktu');
+        $query = $this->db->get();
+        return $query->result_array();
+      }
+
+      public function get_db_waktu(){
+
+        $this->db->select('t_total.*,t_kuisioner.atribut,t_kuisioner.id_kuisioner,t_kuisioner_result.jawaban,
+                          sum(case when t_kuisioner_result.jawaban=5 then 1 else 0 end) as sp,
+                          sum(case when t_kuisioner_result.jawaban=4 then 1 else 0 end) as p,
+                          sum(case when t_kuisioner_result.jawaban=3 then 1 else 0 end) as cp,
+                          sum(case when t_kuisioner_result.jawaban=2 then 1 else 0 end) as tp,
+                          sum(case when t_kuisioner_result.jawaban=1 then 1 else 0 end) as stp'
+                            );
+
+        $this->db->from('t_kuisioner');
+        $this->db->group_by('t_kuisioner.id_kuisioner');
+        $this->db->order_by('t_kuisioner.id_kuisioner', 'asc');
+        $this->db->join('t_kuisioner_result','t_kuisioner.id_kuisioner = t_kuisioner_result.id_kuisioner', 'left');
+        $this->db->join('t_total','t_kuisioner_result.id_kuisioner = t_total.id_kuisioner', 'left');
+        $this->db->where('t_kuisioner.atribut','Waktu');
+        $query = $this->db->get();
+        return $query->result_array();
+      }
+
+      public function hitung_entropy_waktu(){
+        $listKuisioner = $this->get_db_waktu();
+        $countJawaban = $this->countJawaban();
+        $hasil=array(
+          'sp' => 0,
+          'p' => 0,
+          'cp' => 0,
+          'tp' => 0,
+          'stp' => 0,
+          // '' => 0,
+        );
+
+       $jumlahResponden = count($countJawaban);
+       $puas = 84;
+       $tidak_puas=17;
+        foreach ($listKuisioner as $kuisioner){
+          foreach ($kuisioner as $pelayanan => $nilai){
+            if(array_key_exists($pelayanan, $hasil)){
+              $hasil[$pelayanan] += $nilai;
+            }
+          }
+        }
+
+        foreach ($hasil as $unitPelayanan => $nilai){
+          $hasil[$unitPelayanan] = $nilai/$jumlahResponden; //entropy per variabel
+          // $hasil[$unitPelayanan] = (-$puas/$nilai)*(log(2)*$puas/$nilai)+(-$tidak_puas/$nilai)*(log(2)*$tidak_puas/$nilai);
+
+        }
+
+          return $hasil;
+      }
+
+      public function get_db_akurat(){
+
+        $this->db->select('t_total.*,t_kuisioner.atribut,t_kuisioner.id_kuisioner,t_kuisioner_result.jawaban,
+                          sum(case when t_kuisioner_result.jawaban=5 then 1 else 0 end) as sp,
+                          sum(case when t_kuisioner_result.jawaban=4 then 1 else 0 end) as p,
+                          sum(case when t_kuisioner_result.jawaban=3 then 1 else 0 end) as cp,
+                          sum(case when t_kuisioner_result.jawaban=2 then 1 else 0 end) as tp,
+                          sum(case when t_kuisioner_result.jawaban=1 then 1 else 0 end) as stp'
+                            );
+
+        $this->db->from('t_kuisioner');
+        $this->db->group_by('t_kuisioner.id_kuisioner');
+        $this->db->order_by('t_kuisioner.id_kuisioner', 'asc');
+        $this->db->join('t_kuisioner_result','t_kuisioner.id_kuisioner = t_kuisioner_result.id_kuisioner', 'left');
+        $this->db->join('t_total','t_kuisioner_result.id_kuisioner = t_total.id_kuisioner', 'left');
+        $this->db->where('t_kuisioner.atribut','Akurat');
+        $query = $this->db->get();
+        return $query->result_array();
+      }
+
+      public function hitung_entropy_akurat(){
+        $listKuisioner = $this->get_db_akurat();
+        $countJawaban = $this->countJawaban();
+        $hasil=array(
+          'sp' => 0,
+          'p' => 0,
+          'cp' => 0,
+          'tp' => 0,
+          'stp' => 0,
+          // '' => 0,
+        );
+
+       $jumlahResponden = count($countJawaban);
+       $puas = 84;
+       $tidak_puas=17;
+        foreach ($listKuisioner as $kuisioner){
+          foreach ($kuisioner as $pelayanan => $nilai){
+            if(array_key_exists($pelayanan, $hasil)){
+              $hasil[$pelayanan] += $nilai;
+            }
+          }
+        }
+
+        foreach ($hasil as $unitPelayanan => $nilai){
+          $hasil[$unitPelayanan] = $nilai/$jumlahResponden; //entropy per variabel
+          // $hasil[$unitPelayanan] = (-$puas/$nilai)*(log(2)*$puas/$nilai)+(-$tidak_puas/$nilai)*(log(2)*$tidak_puas/$nilai);
+
+        }
+
+          return $hasil;
+      }
+
+      public function get_db_fokus(){
+
+        $this->db->select('t_total.*,t_kuisioner.atribut,t_kuisioner.id_kuisioner,t_kuisioner_result.jawaban,
+                          sum(case when t_kuisioner_result.jawaban=5 then 1 else 0 end) as sp,
+                          sum(case when t_kuisioner_result.jawaban=4 then 1 else 0 end) as p,
+                          sum(case when t_kuisioner_result.jawaban=3 then 1 else 0 end) as cp,
+                          sum(case when t_kuisioner_result.jawaban=2 then 1 else 0 end) as tp,
+                          sum(case when t_kuisioner_result.jawaban=1 then 1 else 0 end) as stp'
+                            );
+
+        $this->db->from('t_kuisioner');
+        $this->db->group_by('t_kuisioner.id_kuisioner');
+        $this->db->order_by('t_kuisioner.id_kuisioner', 'asc');
+        $this->db->join('t_kuisioner_result','t_kuisioner.id_kuisioner = t_kuisioner_result.id_kuisioner', 'left');
+        $this->db->join('t_total','t_kuisioner_result.id_kuisioner = t_total.id_kuisioner', 'left');
+        $this->db->where('t_kuisioner.atribut','Fokus');
+        $query = $this->db->get();
+        return $query->result_array();
+      }
+
+      public function hitung_entropy_fokus(){
+        $listKuisioner = $this->get_db_fokus();
+        $countJawaban = $this->countJawaban();
+        $hasil=array(
+          'sp' => 0,
+          'p' => 0,
+          'cp' => 0,
+          'tp' => 0,
+          'stp' => 0,
+          // '' => 0,
+        );
+
+       $jumlahResponden = count($countJawaban);
+       $puas = 84;
+       $tidak_puas=17;
+        foreach ($listKuisioner as $kuisioner){
+          foreach ($kuisioner as $pelayanan => $nilai){
+            if(array_key_exists($pelayanan, $hasil)){
+              $hasil[$pelayanan] += $nilai;
+            }
+          }
+        }
+
+        foreach ($hasil as $unitPelayanan => $nilai){
+          $hasil[$unitPelayanan] = $nilai/$jumlahResponden; //entropy per variabel
+          // $hasil[$unitPelayanan] = (-$puas/$nilai)*(log(2)*$puas/$nilai)+(-$tidak_puas/$nilai)*(log(2)*$tidak_puas/$nilai);
+
+        }
+
+          return $hasil;
       }
 }
 ?>

@@ -18,9 +18,6 @@
     <div class="container-fluid">
       <div class="card">
         <div class="card-body">
-          <!-- <?php if ($this->session->flashdata('message')): ?>
-              <?= $this->session->flashdata('message'); ?>
-          <?php endif; ?> -->
           <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
               <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Edit Profile</a>
@@ -31,11 +28,6 @@
           </ul>
           <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-              <?php if (empty($profile)): ?>
-                <div class="alert alert-warning" role="alert">
-                  Data Kosong!!!
-                </div>
-              <?php else: ?>
                 <form id="form_edit_profile" action="<?php echo base_url('karyawan_profile/edit_profile') ?>" method="post">
                   <div class="row">
                     <div class="col-sm-12">
@@ -140,7 +132,6 @@
                   </div>
                 </form>
 
-              <?php endif; ?>
 
             </div>
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
@@ -187,7 +178,6 @@
                     <button type="submit" class="btn btn-sm btn-primary" id="btn_edit_password">Simpan Password</button>
                   </div>
                 </form>
-            </div>
           </div>
         </div>
       </div>

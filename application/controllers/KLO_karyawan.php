@@ -14,6 +14,7 @@ class KLO_karyawan extends CI_Controller {
 	{
 		$data['title']	 = 'Data Karyawan';
 		$data['content'] = 'KLO/karyawan.php';
+		
 		$this->load->view('klo/main_admin',$data);
 	}
 
@@ -81,8 +82,14 @@ class KLO_karyawan extends CI_Controller {
 
     public function edit($id)
     {
-      $data = $this->M_Karyawan->edit_by_id($id); // get data dari database melalui model
-      echo json_encode($data);
+      //$data = $this->M_Karyawan->edit_by_id($id); // get data dari database melalui model
+      //echo json_encode($data);
+
+			$this->db->from('t_karyawan');
+      $this->db->where('id_user',$id);
+      $query = $this->db->get();
+
+      return $query->row();
     }
 
     public function update()

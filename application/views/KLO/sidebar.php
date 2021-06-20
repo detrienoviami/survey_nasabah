@@ -1,5 +1,5 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-  <a href="<?php echo base_url('karyawan_profile')?>" class="brand-link">
+  <a href="<?php echo base_url('Karyawan_profile')?>" class="brand-link">
     <img src="<?= base_url()?>assets/img/LogoBCA.jpg" alt="" class="brand-image img-circle elevation-2"
          style="opacity: .8">
     <span class="brand-text font-weight-light"><?php echo $this->session->userdata('nama')?></span>

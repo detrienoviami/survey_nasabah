@@ -1,7 +1,7 @@
 <?php
 class M_profile extends CI_Model{
-    var $table = 't_user'; //nama tabel dari database
-    var $column_order = array(null, 'id_user', 'nama','username', 'password');
+    //ar $table = 't_user'; //nama tabel dari database
+    //var $column_order = array(null, 'id_user', 'nama','username', 'password');
     // var $table = 't_karyawan';
     // var $column_order = array(null, 'id_user', 'nip','nama', 'tgl_lahir', 'email', 'agama', 'alamat', 'no_hp', 'status');
 
@@ -13,7 +13,6 @@ class M_profile extends CI_Model{
 
     public function save($data)
     {
-
         $this->db->insert('t_user', $data);
         return $this->db->insert_id();
     }
@@ -40,14 +39,16 @@ class M_profile extends CI_Model{
 
     public function get_karyawan()
     {
-        $query = $this->db->select('*')
+      $query = $this->db->select(`t_user.*,t_karyawan.*`)
                       ->from('t_user a')
                       ->join('t_karyawan b', 'a.id_user = b.id_user')
                       ->where('a.id_user', $this->session->userdata('id_user'))
                       ->get();
         // echo "<pre>";
         // echo $this->db->last_query();
+        //return $query->result();
         return $query->row_array();
-        
+
     }
 }
+?>

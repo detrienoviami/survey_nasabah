@@ -19,8 +19,37 @@
       <div class="card">
         <div class="card-body">
           <!-- <div class="table table-responsive"> -->
+          <div class="col-sm-4">
+            <div class="form-group">
+                <span for="jawaban">Jumlah Data : <?php echo $jawaban ?><input class="jawaban" value="<?php echo $jawaban ?>" hidden/></span>
+            </div>
+          </div>
+          <?php
+            $i=1;
+           foreach ($layanan as  $field){ ?>
+          <div class="col-sm-12">
+            <div class="form-group">
+                <span for="jml_puas">Jumlah Layanan (Puas) : <?php echo $field['sp'] ?><input class="sp" value="<?php echo $field['sp'] ?>" hidden/></span>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="form-group">
+                <span for="jml_tidakpuas">Jumlah Layanan (Tidak Puas) : <?php echo $field['stp'] ?><input class="stp" value="<?php echo $field['stp'] ?>" hidden/></span>
+            </div>
+          </div>
+            <?php $i++;} ?>
+          <div class="col-sm-12">
+            <div class="form-group">
+                <span for="entrophi">Jumlah Entrophi : <input class="entrophy" value="" readonly/></span>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="form-group">
+                <!-- <span for="jml_gain">Jumlah Gain : <?php echo $jml_gain ?></span> -->
+            </div>
+          </div>
 
-              <div class="table table-responsive">
+          <div class="table table-responsive">
                   <table class="table table-bordered table-striped" id="">
                     <thead>
                       <tr>
@@ -49,14 +78,14 @@
                         <?php $i++;} ?>
                     </tbody>
                     <tfoot>
-                        <tr>
+                        <!-- <tr>
                             <th colspan="2" scope="row">Entrophy</th>
                                <td><?php echo $entrophy['stp'] ?><input type="hidden" value=<?php echo $entrophy['stp'] ?> name='stp'/></td>
                                <td><?php echo $entrophy['tp'] ?><input type="hidden" value=<?php echo $entrophy['tp'] ?> name='tp'/></td>
                                <td><?php echo $entrophy['cp'] ?><input type="hidden" value=<?php echo $entrophy['cp'] ?> name='cp'/></td>
                                <td><?php echo $entrophy['p'] ?><input type="hidden" value=<?php echo $entrophy['p'] ?> name='p'/></td>
                                <td><?php echo $entrophy['sp'] ?><input type="hidden" value=<?php echo $entrophy['sp'] ?> name='sp'/></td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <th colspan="2" scope="row">Gain</th>
                             <!-- <td><?php echo $gain['stp'] ?><input type="hidden" value=<?php echo $gain['stp'] ?> name='stp'/></td>
@@ -77,6 +106,142 @@
               </div>
               <!-- <button type="button" class="btn btn-sm btn-primary" id="btn_save" onclick="ajax_save()">Save</button> -->
           <!-- </div> -->
+
+          <div class="table table-responsive">
+              <table class="table table-bordered table-striped" id="">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Id Total</th>
+                    <th>Sangat Tidak Puas</th>
+                    <th>Tidak Puas</th>
+                    <th>Cukup Puas</th>
+                    <th>Puas</th>
+                    <th>Sangat Puas</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <?php
+                      $i=1;
+                     foreach ($waktu as  $field){ ?>
+                     <tr>
+                       <td><?php echo $i ?></td>
+                         <td><?php echo $field['atribut'] ?><input type="hidden" value=<?php echo $field['atribut'] ?> name='atribut'/></td>
+                         <td class="waktu_stp"><?php echo $field['stp'] ?><input type="hidden" class="waktu_stp" value=<?php echo $field['stp'] ?> name='stp'/></td>
+                         <td class="waktu_tp" ><?php echo $field['tp'] ?><input type="hidden" class="waktu_tp" value=<?php echo $field['tp'] ?> name='tp'/></td>
+                         <td class="waktu_cp"><?php echo $field['cp'] ?><input type="hidden" class="waktu_cp" value=<?php echo $field['cp'] ?> name='cp'/></td>
+                         <td class="waktu_p"><?php echo $field['p'] ?><input type="hidden" class="waktu_p" value=<?php echo $field['p'] ?> name='p'/></td>
+                         <td class="waktu_sp"><?php echo $field['sp'] ?><input type="hidden" class="waktu_sp" value=<?php echo $field['sp'] ?> name='sp'/></td>
+                     </tr>
+                    <?php $i++;} ?>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="2" scope="row">Entrophy</th>
+                           <td class="waktu_en_stp"><input type="hidden" class="waktu_en_stp" value="" name='stp'/></td>
+                           <td class="waktu_en_tp"><input type="hidden" class="waktu_en_tp" value="" name='tp'/></td>
+                           <td class="waktu_en_cp"><input type="hidden" class="waktu_en_cp" value="" name='cp'/></td>
+                           <td class="waktu_en_p"><input type="hidden" class="waktu_en_p" value="" name='p'/></td>
+                           <td class="waktu_en_sp"><input type="hidden" class="waktu_en_sp" value="" name='sp'/></td>
+                    </tr>
+                    <?php
+                      $i=1;
+                     foreach ($waktu_puas as  $field){ ?>
+                     <tr>
+                       <td><?php echo $i ?></td>
+                         <td><?php echo $field['atribut'] ?><input type="hidden" value=<?php echo $field['atribut'] ?> name='atribut'/></td>
+                         <td class="waktu_stp"><?php echo $field['stp'] ?><input type="hidden" class="waktu_stp" value=<?php echo $field['stp'] ?> name='stp'/></td>
+                         <td class="waktu_tp" ><?php echo $field['tp'] ?><input type="hidden" class="waktu_tp" value=<?php echo $field['tp'] ?> name='tp'/></td>
+                         <td class="waktu_cp"><?php echo $field['cp'] ?><input type="hidden" class="waktu_cp" value=<?php echo $field['cp'] ?> name='cp'/></td>
+                         <td class="waktu_p"><?php echo $field['p'] ?><input type="hidden" class="waktu_p" value=<?php echo $field['p'] ?> name='p'/></td>
+                         <td class="waktu_sp"><?php echo $field['sp'] ?><input type="hidden" class="waktu_sp" value=<?php echo $field['sp'] ?> name='sp'/></td>
+                     </tr>
+                    <?php $i++;} ?>
+                </tfoot>
+            </table>
+          </div>
+          <br/>
+          <div class="table table-responsive">
+              <table class="table table-bordered table-striped" id="">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Id Total</th>
+                    <th>Sangat Tidak Puas</th>
+                    <th>Tidak Puas</th>
+                    <th>Cukup Puas</th>
+                    <th>Puas</th>
+                    <th>Sangat Puas</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <?php
+                      $i=1;
+                     foreach ($akurat as  $field){ ?>
+                     <tr>
+                       <td><?php echo $i ?></td>
+                         <td><?php echo $field['atribut'] ?><input type="hidden" value=<?php echo $field['atribut'] ?> name='atribut'/></td>
+                         <td><?php echo $field['stp'] ?><input type="hidden" value=<?php echo $field['stp'] ?> name='stp'/></td>
+                         <td><?php echo $field['tp'] ?><input type="hidden" value=<?php echo $field['tp'] ?> name='tp'/></td>
+                         <td><?php echo $field['cp'] ?><input type="hidden" value=<?php echo $field['cp'] ?> name='cp'/></td>
+                         <td><?php echo $field['p'] ?><input type="hidden" value=<?php echo $field['p'] ?> name='p'/></td>
+                         <td><?php echo $field['sp'] ?><input type="hidden" value=<?php echo $field['sp'] ?> name='sp'/></td>
+                     </tr>
+                    <?php $i++;} ?>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="2" scope="row">Entrophy</th>
+                           <td><?php echo $entrophy_akurat['stp'] ?><input type="hidden" value=<?php echo $entrophy_akurat['stp'] ?> name='stp'/></td>
+                           <td><?php echo $entrophy_akurat['tp'] ?><input type="hidden" value=<?php echo $entrophy_akurat['tp'] ?> name='tp'/></td>
+                           <td><?php echo $entrophy_akurat['cp'] ?><input type="hidden" value=<?php echo $entrophy_akurat['cp'] ?> name='cp'/></td>
+                           <td><?php echo $entrophy_akurat['p'] ?><input type="hidden" value=<?php echo $entrophy_akurat['p'] ?> name='p'/></td>
+                           <td><?php echo $entrophy_akurat['sp'] ?><input type="hidden" value=<?php echo $entrophy_akurat['sp'] ?> name='sp'/></td>
+                    </tr>
+                </tfoot>
+            </table>
+          </div>
+          <br/>
+          <div class="table table-responsive">
+              <table class="table table-bordered table-striped" id="">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Id Total</th>
+                    <th>Sangat Tidak Puas</th>
+                    <th>Tidak Puas</th>
+                    <th>Cukup Puas</th>
+                    <th>Puas</th>
+                    <th>Sangat Puas</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <?php
+                      $i=1;
+                     foreach ($fokus as  $field){ ?>
+                     <tr>
+                       <td><?php echo $i ?></td>
+                         <td><?php echo $field['atribut'] ?><input type="hidden" value=<?php echo $field['atribut'] ?> name='atribut'/></td>
+                         <td><?php echo $field['stp'] ?><input type="hidden" value=<?php echo $field['stp'] ?> name='stp'/></td>
+                         <td><?php echo $field['tp'] ?><input type="hidden" value=<?php echo $field['tp'] ?> name='tp'/></td>
+                         <td><?php echo $field['cp'] ?><input type="hidden" value=<?php echo $field['cp'] ?> name='cp'/></td>
+                         <td><?php echo $field['p'] ?><input type="hidden" value=<?php echo $field['p'] ?> name='p'/></td>
+                         <td><?php echo $field['sp'] ?><input type="hidden" value=<?php echo $field['sp'] ?> name='sp'/></td>
+                     </tr>
+                    <?php $i++;} ?>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="2" scope="row">Entrophy</th>
+                           <td><?php echo $entrophy_fokus['stp'] ?><input type="hidden" value=<?php echo $entrophy_fokus['stp'] ?> name='stp'/></td>
+                           <td><?php echo $entrophy_fokus['tp'] ?><input type="hidden" value=<?php echo $entrophy_fokus['tp'] ?> name='tp'/></td>
+                           <td><?php echo $entrophy_fokus['cp'] ?><input type="hidden" value=<?php echo $entrophy_fokus['cp'] ?> name='cp'/></td>
+                           <td><?php echo $entrophy_fokus['p'] ?><input type="hidden" value=<?php echo $entrophy_fokus['p'] ?> name='p'/></td>
+                           <td><?php echo $entrophy_fokus['sp'] ?><input type="hidden" value=<?php echo $entrophy_waktu['sp'] ?> name='sp'/></td>
+                    </tr>
+                </tfoot>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -85,12 +250,36 @@
 
 <script src="<?php echo base_url()?>assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript">
-
+// $('.entrophy').each({
+//   var jawaban = $('.jawaban').val();
+//   console.log(jawaban);
+//   var sp = $('.sp').val();
+//   var stp = $('.stp').val();
+//   var count = -(sp/jawaban)*Math.log2((sp/jawaban)) + -(stp/jawaban)*Math.log2((stp/jawaban));
+//   $this.val(count);
+// })
 var table;
 var save_method; //for save method string
 // var base_url = '<?php echo base_url();?>';
 
 $(document).ready(function() {
+  $('.entrophy').each(function(){
+    var jawaban = $('.jawaban').val();
+    console.log(jawaban);
+    var sp = $('.sp').val();
+    var stp = $('.stp').val();
+    var count = -(sp/jawaban)*Math.log2((sp/jawaban)) + -(stp/jawaban)*Math.log2((stp/jawaban));
+    $('.entrophy').val(count);
+  })
+  // waktu
+  $('.waktu_en_sp').each(function(){
+    var jawaban = $('.jawaban').val();
+    console.log(jawaban);
+    var sp = $('.waktu_sp').val();
+    var stp = $('.waktu_stp').val();
+    var count = -(sp/sp)*Math.log2((sp/sp)) + -(stp/sp)*Math.log2((stp/sp));
+    $('.waktu_en_sp').val(count);
+  })
 //datatables
   // table = $('#show_table').DataTable({
   //     "processing": true, //Feature control the processing indicator.

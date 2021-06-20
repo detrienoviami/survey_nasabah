@@ -23,7 +23,22 @@ class KLO_total extends CI_Controller {
 		//var_dump($data['gain']);
 		$data['kesimpulan'] = $this->MKLO_Total->simpulan();
 		//var_dump($data['total']);
+		$data['waktu'] = $this->MKLO_Total->get_db_waktu();
+		$data['entrophy_waktu'] = $this->MKLO_Total->hitung_entropy_waktu();
+		$data['waktu_puas'] = $this->MKLO_Total->get_db_waktupuas();
+
+		$data['akurat'] = $this->MKLO_Total->get_db_akurat();
+		$data['entrophy_akurat'] = $this->MKLO_Total->hitung_entropy_akurat();
+
+		$data['fokus'] = $this->MKLO_Total->get_db_fokus();
+		$data['entrophy_fokus'] = $this->MKLO_Total->hitung_entropy_fokus();
 	//	$data['insert'] = $this->MKLO_Total->insert_auto();
+
+		$data['jawaban'] 	= $this->MKLO_Total->count();
+		$data['layanan'] 	= $this->MKLO_Total->count_layanan();
+		$data['entrophi'] 	= $this->MKLO_Total->entrophi();
+		//$data['gain'] 	= $this->MKLO_Total->gain();
+
 		$this->load->view('klo/main_admin',$data);
 	}
 

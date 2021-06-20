@@ -1,4 +1,4 @@
-<?php
+  <?php
 class M_Karyawan extends CI_Model{
   var $table = 't_karyawan'; //nama tabel dari database
   var $column_order = array(null, 'id_user','nip','nama','tgl_lahir','email','agama','alamat','no_hp','status'); //field yang ada di table kuisioner
