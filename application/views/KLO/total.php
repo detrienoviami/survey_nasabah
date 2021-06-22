@@ -144,19 +144,42 @@
                            <td class="waktu_en_p"><input type="hidden" class="waktu_en_p" value="" name='p'/></td>
                            <td class="waktu_en_sp"><input type="hidden" class="waktu_en_sp" value="" name='sp'/></td>
                     </tr>
-                    <?php
-                      $i=1;
-                     foreach ($waktu_puas as  $field){ ?>
+
                      <tr>
-                       <td><?php echo $i ?></td>
-                         <td><?php echo $field['atribut'] ?><input type="hidden" value=<?php echo $field['atribut'] ?> name='atribut'/></td>
-                         <td class="waktu_stp"><?php echo $field['stp'] ?><input type="hidden" class="waktu_stp" value=<?php echo $field['stp'] ?> name='stp'/></td>
-                         <td class="waktu_tp" ><?php echo $field['tp'] ?><input type="hidden" class="waktu_tp" value=<?php echo $field['tp'] ?> name='tp'/></td>
-                         <td class="waktu_cp"><?php echo $field['cp'] ?><input type="hidden" class="waktu_cp" value=<?php echo $field['cp'] ?> name='cp'/></td>
-                         <td class="waktu_p"><?php echo $field['p'] ?><input type="hidden" class="waktu_p" value=<?php echo $field['p'] ?> name='p'/></td>
-                         <td class="waktu_sp"><?php echo $field['sp'] ?><input type="hidden" class="waktu_sp" value=<?php echo $field['sp'] ?> name='sp'/></td>
+                       <th colspan="7" class="text-center">Puas</th>
+                       <tr>
+                         <?php
+                           $i=1;
+                          foreach ($waktu_puas as  $field){ ?>
+                         <td><?php echo $i ?></td>
+                           <td><?php echo $field['atribut'] ?><input type="hidden" value=<?php echo $field['atribut'] ?> name='atribut'/></td>
+                           <td class="waktu_stp"><?php echo $field['stp'] ?><input type="hidden" class="waktu_stp" value=<?php echo $field['stp'] ?> name='stp'/></td>
+                           <td class="waktu_tp" ><?php echo $field['tp'] ?><input type="hidden" class="waktu_tp" value=<?php echo $field['tp'] ?> name='tp'/></td>
+                           <td class="waktu_cp"><?php echo $field['cp'] ?><input type="hidden" class="waktu_cp" value=<?php echo $field['cp'] ?> name='cp'/></td>
+                           <td class="waktu_p"><?php echo $field['p'] ?><input type="hidden" class="waktu_p" value=<?php echo $field['p'] ?> name='p'/></td>
+                           <td class="waktu_sp"><?php echo $field['sp'] ?><input type="hidden" class="waktu_sp" value=<?php echo $field['sp'] ?> name='sp'/></td>
+                        <?php $i++;} ?>
+                       </tr>
+
                      </tr>
-                    <?php $i++;} ?>
+
+                     <tr>
+                       <th colspan="7" class="text-center">Tidak Puas</th>
+                       <tr>
+                         <?php
+                           $i=1;
+                          foreach ($waktu_puas as  $field){ ?>
+                         <td><?php echo $i ?></td>
+                           <td><?php echo $field['atribut'] ?><input type="hidden" value=<?php echo $field['atribut'] ?> name='atribut'/></td>
+                           <td class="waktu_stp"><?php echo $field['stp'] ?><input type="hidden" class="waktu_stp" value=<?php echo $field['stp'] ?> name='stp'/></td>
+                           <td class="waktu_tp" ><?php echo $field['tp'] ?><input type="hidden" class="waktu_tp" value=<?php echo $field['tp'] ?> name='tp'/></td>
+                           <td class="waktu_cp"><?php echo $field['cp'] ?><input type="hidden" class="waktu_cp" value=<?php echo $field['cp'] ?> name='cp'/></td>
+                           <td class="waktu_p"><?php echo $field['p'] ?><input type="hidden" class="waktu_p" value=<?php echo $field['p'] ?> name='p'/></td>
+                           <td class="waktu_sp"><?php echo $field['sp'] ?><input type="hidden" class="waktu_sp" value=<?php echo $field['sp'] ?> name='sp'/></td>
+                        <?php $i++;} ?>
+                       </tr>
+
+                     </tr>
                 </tfoot>
             </table>
           </div>

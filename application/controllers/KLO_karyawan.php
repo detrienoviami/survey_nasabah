@@ -14,7 +14,7 @@ class KLO_karyawan extends CI_Controller {
 	{
 		$data['title']	 = 'Data Karyawan';
 		$data['content'] = 'KLO/karyawan.php';
-		
+
 		$this->load->view('klo/main_admin',$data);
 	}
 
@@ -87,9 +87,11 @@ class KLO_karyawan extends CI_Controller {
 
 			$this->db->from('t_karyawan');
       $this->db->where('id_user',$id);
-      $query = $this->db->get();
+      // $query = $this->db->get();
+      // return $query->row();
+			$data = $this->db->get()->row();
 
-      return $query->row();
+			echo json_encode($data);
     }
 
     public function update()
@@ -114,9 +116,12 @@ class KLO_karyawan extends CI_Controller {
 
     public function destroy($id)
     {
-      $data = $this->M_Karyawan->edit_by_id($id); // get id dari database melalui model
-      $this->M_Karyawan->delete_by_id($id);
-      echo json_encode(array("status" => TRUE));
+      // $data = $this->M_Karyawan->edit_by_id($id); // get id dari database melalui model
+      // $this->M_Karyawan->delete_by_id($id);
+      // echo json_encode(array("status" => TRUE));
+			$delete = $this->db->where('id_user', $id)
+												 ->delete('t_karyawan');
+			echo json_encode(array("status" => TRUE));
     }
 
 }

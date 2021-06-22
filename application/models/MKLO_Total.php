@@ -480,14 +480,14 @@ class MKLO_Total extends CI_Model{
         $this->db->order_by('t_kuisioner.id_kuisioner', 'asc');
         $this->db->join('t_kuisioner_result','t_kuisioner.id_kuisioner = t_kuisioner_result.id_kuisioner', 'left');
         $this->db->join('t_total','t_kuisioner_result.id_kuisioner = t_total.id_kuisioner', 'left');
-        $this->db->group_start();
-                $this->db->where('t_kuisioner.atribut', 'Waktu');
-                $this->db->or_group_start();
-                        $this->db->where('t_kuisioner.atribut', 'Layanan');
-                        $this->db->where('t_kuisioner_result.jawaban', '5');
-                $this->db->group_end();
-        $this->db->group_end();
-        //$this->db->where('t_kuisioner.atribut','Waktu');
+        // $this->db->group_start();
+        //         $this->db->where('t_kuisioner.atribut', 'Waktu');
+        //         $this->db->or_group_start();
+        //                 $this->db->where('t_kuisioner.atribut', 'Layanan');
+        //                 $this->db->where('t_kuisioner_result.jawaban', '5');
+        //         $this->db->group_end();
+        // $this->db->group_end();
+        $this->db->where('t_kuisioner.atribut','Waktu');
         $query = $this->db->get();
         return $query->result_array();
       }
