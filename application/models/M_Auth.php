@@ -21,6 +21,15 @@ class M_Auth extends CI_Model{
   $this->db->insert('t_user', $data);
 }
 
+  public function get_data_register()
+  {
+    $this->db->select('*');
+    $this->db->from('t_user');
+    $this->db->join('t_karyawan','t_user.id_user=t_karyawan.id_user');
+    $query = $this->db->get();
+
+    return $query->result();
+  }
 }
 
 ?>

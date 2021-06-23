@@ -32,7 +32,7 @@
           </div>
           <div class="form-group has-feedback">
               <label for="username">Username</label>
-            <input type="text" class="form-control form-control-user" name="username"  placeholder="E-mail" value="<?= set_value('username'); ?>">
+            <input type="text" class="form-control form-control-user" name="username"  placeholder="Username" value="<?= set_value('username'); ?>">
             <small class="form-text text-danger ml-3"><?= form_error('username'); ?></small>
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
