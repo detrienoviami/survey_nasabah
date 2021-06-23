@@ -19,6 +19,11 @@
         <div class="login-logo">
             <a href="javascript:void(0);">Selamat Datang di Sistem Survey Layanan</a>
         </div>
+        <p class="login-box-msg"><?= $this->session->flashdata('message');?></p>
+    <!-- <div class="login-box">
+        <div class="login-logo">
+            <a href="javascript:void(0);">Selamat Datang di Sistem Survey Layanan</a>
+        </div>
         <form class="login-box-body" action="" method="post">
             <p class="login-box-msg"><?= $this->session->flashdata('message');?></p>
             <div class="form-group has-feedback">
@@ -49,9 +54,39 @@
                 <a href="<?= base_url('auth/registrasi'); ?>">Buat Akun</a>
             </p>
           </form>
+    </div> -->
+
+    <div class="card card-info">
+      <div class="card-header">
+        <h3 class="card-title">Login Aplikasi</h3>
+      </div>
+      <form class="login-box-body" action="" method="post">
+        <div class="card-body">
+          <div class="form-group row">
+            <label for="Username" class="col-sm-4 col-form-label">Username</label>
+            <div class="col-sm-8">
+              <input type="text" name="username" value="" id="username" class="form-control" placeholder="Your Username">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="Password" class="col-sm-4 col-form-label">Password</label>
+            <div class="col-sm-8">
+              <input type="password" name="password" value="" id="password" class="form-control" placeholder="Your Password">
+            </div>
+          </div>
+            <button type="submit" name="login" value="Login" class="btn btn-primary float-right">Sign in</button>
+          </div>
+          <div class="col-sm-10">
+            <p>Belum punya akun?
+                <a href="<?= base_url('auth_registrasi'); ?>">Buat Akun</a>
+            </p>
+          </div>
+        </div>
+      </form>
     </div>
 
-    <script src="<?= base_url('assets/'); ?>frameworks/jquery/jquery.min.js"></script>
+
+
     <script src="<?= base_url('assets/'); ?>frameworks/bootstrap/js/bootstrap.min.js"></script>
     <script src="<?= base_url('assets/'); ?>plugins/icheck/js/icheck.min.js"></script>
     <script>

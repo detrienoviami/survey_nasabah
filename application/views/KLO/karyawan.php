@@ -28,7 +28,7 @@
                 <thead>
                   <tr>
                     <th>No</th>
-                    <th>Id User</th>
+                    <!-- <th>Id User</th> -->
                     <th>NIP</th>
                     <th>Nama</th>
                     <th>Tanggal Lahir</th>
@@ -36,7 +36,7 @@
                     <th>Agama</th>
                     <th>Alamat</th>
                     <th>No Hp</th>
-                    <!-- <th>Level</th> -->
+                    <th>Level</th>
                     <th>Status</th>
                     <th>Action</th>
                   </tr>
@@ -48,6 +48,7 @@
     </div>
   </section>
 </div>
+
 <div class="modal fade" id="modal-create" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -64,14 +65,9 @@
           <input type="hidden" class="form-control" id="id_user" name="id_user">
           <div class="row">
             <div class="col-sm-12">
-              <!-- <div class="form-group">
-                  <label for="id_user">Id User</label>
-                  <input type="int" class="form-control" id="id_user" name="id_user" placeholder="Id User">
-                  <span class="help-block text-danger"></span>
-              </div> -->
               <div class="form-group">
-                  <label for="nip">NIP</label>
-                  <input type="int" class="form-control" id="nip" name="nip" placeholder="NIP">
+                  <!-- <label for="nip">NIP</label> -->
+                  <input type="hidden" class="form-control" id="nip" name="nip" placeholder="NIP">
                   <span class="help-block text-danger"></span>
               </div>
               <div class="form-group">
@@ -104,14 +100,22 @@
                   <input type="text" class="form-control" id="no_hp" name="no_hp" placeholder="No Handphone">
                   <span class="help-block text-danger"></span>
               </div>
-              <!-- <div class="form-group">
+              <div class="form-group">
                   <label for="level">Level</label>
-                  <input type="text" class="form-control" id="level" name="level" placeholder="Level">
+                  <!-- <input type="text" class="form-control" id="level" name="level" placeholder="Level"> -->
+                  <select class="form-control" id="level" name="level">
+                        <option value="Pimpinan">Pimpinan</option>
+                        <option value="KLO">KLO</option>
+                  </select>
                   <span class="help-block text-danger"></span>
-              </div> -->
+              </div>
               <div class="form-group">
                   <label for="status">Status</label>
-                  <input type="text" class="form-control" id="status" name="status" placeholder="Status">
+                  <!-- <input type="text" class="form-control" id="status" name="status" placeholder="Status"> -->
+                  <select class="form-control" id="status" name="status">
+                        <option value="aktif">Aktif</option>
+                        <option value="non aktif">Non Aktif</option>
+                  </select>
                   <span class="help-block text-danger"></span>
               </div>
             </div>
@@ -131,7 +135,6 @@
 
 var table;
 var save_method; //for save method string
-// var base_url = '<?php echo base_url();?>';
 
 $(document).ready(function() {
 //datatables
@@ -168,7 +171,6 @@ $('.datepicker').datepicker({
 function reload_table()
 {
     table.ajax.reload(null,false); //reload datatable ajax
-
 }
 
 function add_data()
@@ -248,7 +250,6 @@ function ajax_save()
 
             $('#btn_save').text('Save'); //change button text
             $('#btn_save').attr('disabled',false); //set button enable
-
         }
     });
 }
@@ -266,11 +267,19 @@ function ajax_edit(id)
         dataType: "JSON",
         success: function(data)
         {
-
+            // console.log(data);
             // jika berhasil menampilkan data dari database
-
             $('[name="id_user"]').val(data.id_user);
-            $('[name="karyawan"]').val(data.karyawan);
+            $('[name="nip"]').val(data.nip);
+            $('[name="nama"]').val(data.nama);
+            $('[name="tgl_lahir"]').val(data.tgl_lahir);
+            $('[name="email"]').val(data.email);
+            $('[name="agama"]').val(data.agama);
+            $('[name="alamat"]').val(data.alamat);
+            $('[name="no_hp"]').val(data.no_hp);
+            $('[name="level"]').val(data.level);
+            $('[name="status"]').val(data.status);
+
             $('#modal-create').modal('show'); // munculkan form/kotak modal
             $('.modal-title').text('Edit Data'); // judul form modal
 
@@ -279,7 +288,6 @@ function ajax_edit(id)
         {
 
             // jika gagal menampilkan data dari database
-
             iziToast.error({ //tampilkan iziToast dengan notif data berhasil disimpan pada posisi kanan bawah
                     title: 'Gagal menampilkan data dari database',
                     message: "<?php echo $this->session->flashdata('success'); ?>",

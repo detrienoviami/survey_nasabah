@@ -39,7 +39,7 @@ class M_profile extends CI_Model{
 
     public function get_karyawan()
     {
-      $query = $this->db->select(`t_user.*,t_karyawan.*`)
+      $query = $this->db->select('*')
                       ->from('t_user a')
                       ->join('t_karyawan b', 'a.id_user = b.id_user')
                       ->where('a.id_user', $this->session->userdata('id_user'))

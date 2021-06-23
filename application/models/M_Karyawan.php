@@ -1,9 +1,9 @@
-  <?php
+<?php
 class M_Karyawan extends CI_Model{
   var $table = 't_karyawan'; //nama tabel dari database
-  var $column_order = array(null, 'id_user','nip','nama','tgl_lahir','email','agama','alamat','no_hp','status'); //field yang ada di table kuisioner
-  var $column_search = array('id_user','nip','nama'); //field yang diizin untuk pencarian
-  var $order = array('id_user' => 'desc'); // default order
+  var $column_order = array(null, 'a.id_user','b.nip','b.nama','b.tgl_lahir','b.email','b.agama','b.alamat','b.no_hp','a.level','a.status'); //field yang ada di tabel karyawan
+  var $column_search = array('a.id_user','b.nip','b.nama','b.tgl_lahir','b.email','b.agama','b.alamat','b.no_hp','a.level','a.status'); //field yang diizin untuk pencarian
+  var $order = array('a.id_user' => 'desc'); // default order
 
   public function __construct()
   {
@@ -13,8 +13,12 @@ class M_Karyawan extends CI_Model{
 
   private function _get_datatables_query()
   {
-      $this->db->from($this->table);
+      $this->db->select($this->column_order);
+      $this->db->from('t_user a');
+      $this->db->join('t_karyawan b', 'a.id_user = b.id_user');
+
       $i = 0;
+
       foreach ($this->column_search as $item) // looping awal
       {
           if($_POST['search']['value']) // jika datatable mengirimkan pencarian dengan metode POST
@@ -48,9 +52,10 @@ class M_Karyawan extends CI_Model{
   function get_datatables()
   {
       $this->_get_datatables_query();
+
       if($_POST['length'] != -1)
-      $this->db->limit($_POST['length'], $_POST['start']);
-      $query = $this->db->get();
+         $this->db->limit($_POST['length'], $_POST['start']);
+         $query = $this->db->get();
       // echo "<pre>";
       // echo $this->db->last_query();die();
       return $query->result();
@@ -83,6 +88,38 @@ class M_Karyawan extends CI_Model{
       $this->db->update('t_karyawan', $data, $where);
       return $this->db->affected_rows();
   }
+
+  public function save($data)
+  {
+      $this->db->insert('t_karyawan', $data);
+
+      return $this->db->insert_id();
+  }
+
+  public function save_user($data1)
+  {
+      $this->db->insert('t_user', $data1);
+      return $this->db->insert_id();
+  }
+
+  public function delete_by_id($id)
+  {
+      $this->db->where('id_user', $id);
+      $this->db->delete('t_karyawan');
+      $this->db->delete('t_user');
+
+      return $query->row();
+  }
+
+  // public function edit_by_id($id)
+  // {
+  //     $this->db->from('t_karyawan');
+  //     $this->db->where('id_user',$id);
+  //     $query = $this->db->get();
+  //
+  //     return $query->row();
+  // }
+
 
   }
 ?>

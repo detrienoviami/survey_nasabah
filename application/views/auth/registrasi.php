@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Registrasi</title>
 
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta name="google" content="notranslate">
@@ -18,12 +18,11 @@
   <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href=<?= base_url('auth'); ?>>
-              <!-- "javascript:void(0);"> -->
+            <a href=<?= base_url('auth_registrasi'); ?>>
               Form Registrasi</a>
         </div>
 
-        <form class="login-box-body" action="" method="post">
+        <form class="login-box-body" action="<?php echo base_url('auth_registrasi/registrasi') ?>" method="post">
           <div class="form-group has-feedback">
             <label for="nama">Nama Lengkap</label>
             <input type="text" class="form-control form-control-user" name="nama"  placeholder="Nama Lengkap" value="<?= set_value('nama'); ?>">

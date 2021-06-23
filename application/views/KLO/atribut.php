@@ -29,7 +29,7 @@
                     <th>No</th>
                     <th>Id Atribut</th>
                     <th>Atribut</th>
-                    <th>nilai_atribut</th>
+                    <th>Nilai Atribut</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -229,6 +229,7 @@ function ajax_edit(id)
 
             $('[name="id_atribut"]').val(data.id_atribut);
             $('[name="atribut"]').val(data.atribut);
+            $('[name="nilai_atribut"]').val(data.nilai_atribut);
 
             $('#modal-create').modal('show'); // munculkan form/kotak modal
             $('.modal-title').text('Edit Data'); // judul form modal

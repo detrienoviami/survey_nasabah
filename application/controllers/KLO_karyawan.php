@@ -21,14 +21,15 @@ class KLO_karyawan extends CI_Controller {
 	public function datatables()
     {
 	    $karyawan = $this->M_Karyawan->get_datatables();
+			// echo "<pre>";
+			// print_r($karyawan);die;
 	    $data 		= array();
 	    $no 			= $_POST['start']+1;
 
 	    foreach ($karyawan as $field){
-
 				 $row = array();
 				 $row[] = $no++;
-				 $row[] = $field->id_user; //relasi t_user
+				 // $row[] = $field->id_user; //relasi t_user
 				 $row[] = $field->nip;
 				 $row[] = $field->nama;
 				 $row[] = $field->tgl_lahir;
@@ -36,7 +37,7 @@ class KLO_karyawan extends CI_Controller {
 				 $row[] = $field->agama;
 				 $row[] = $field->alamat;
 				 $row[] = $field->no_hp;
-				 //$row[] = $field->level; //relasi t_user
+				 $row[] = $field->level; //relasi t_user
 				 $row[] = $field->status;
 
 				 $row[] = '<a class="btn btn-warning btn-sm" href="javascript:void(0)"
@@ -63,62 +64,92 @@ class KLO_karyawan extends CI_Controller {
 
     public function tambah()
     {
-      $data = array(
-					// 'id_user' 	  => $this->input->post('id_user'),
-					'nip' 				=> $this->input->post('nip'),
+			$data1 = array(
 					'nama' 				=> $this->input->post('nama'),
-					'tgl_lahir' 	=> $this->input->post('tgl_lahir'),
-					'email' 			=> $this->input->post('email'),
-					'agama' 			=> $this->input->post('agama'),
-					'alamat' 			=> $this->input->post('alamat'),
-					'no_hp' 			=> $this->input->post('no_hp'),
-					// 'level' 			=> $this->input->post('level'),
-					'status'			=> $this->input->post('status')
-      );
+					'username' 		=> $this->input->post('nama'),
+					'level' 			=> $this->input->post('level'),
+					'status' 			=> $this->input->post('status'),
+					'password'		=> password_hash('12345678',PASSWORD_DEFAULT)
+			);
 
-      $insert = $this->M_Karyawan->save($data); // simpan data ke model
-      echo json_encode(array('status' => TRUE)); // akan muncul notif ini di kirim ke view, function ajax_save()
+			$this->db->insert('t_user',$data1);
+			$insert1 = $this->db->insert_id();
+
+			if ($insert1) {
+
+				$c_t = microtime(true);
+        $c_micro = sprintf("%06d",($c_t - floor($c_t)) * 1000000);
+        $c_datetime = new DateTime( date('Y-m-d H:i:s.'.$c_micro, $c_t) );
+        $nip = "KRY".$c_datetime->format("YmdHisu");
+
+				$data = array(
+						'id_user' 	  => $insert1,
+						'nip' 				=> $nip,
+						'nama' 				=> $this->input->post('nama'),
+						'tgl_lahir' 	=> $this->input->post('tgl_lahir'),
+						'email' 			=> $this->input->post('email'),
+						'agama' 			=> $this->input->post('agama'),
+						'alamat' 			=> $this->input->post('alamat'),
+						'no_hp' 			=> $this->input->post('no_hp'),
+						'status'			=> $this->input->post('status')
+	      );
+
+	      $insert = $this->M_Karyawan->save($data); // simpan data ke model
+	      echo json_encode(array('status' => TRUE)); // akan muncul notif ini di kirim ke view, function ajax_save()
+			}else{
+				echo json_encode(array('status' => 'Gagal Insert User')); // akan muncul notif ini di kirim ke view, function ajax_save()
+			}
+
     }
 
     public function edit($id)
     {
-      //$data = $this->M_Karyawan->edit_by_id($id); // get data dari database melalui model
-      //echo json_encode($data);
-
-			$this->db->from('t_karyawan');
-      $this->db->where('id_user',$id);
-      // $query = $this->db->get();
-      // return $query->row();
+			$this->db->select('b.id_user,b.nip,b.nama,b.tgl_lahir,b.email,b.agama,b.alamat,b.no_hp,a.level,a.status');
+			$this->db->from('t_user a');
+			$this->db->join('t_karyawan b','a.id_user = b.id_user');
+      $this->db->where('b.id_user',$id);
 			$data = $this->db->get()->row();
-
+			// echo "<pre>";
+			// print_r($data);die;
 			echo json_encode($data);
     }
 
     public function update()
     {
-      $data = array(
-					'id_user' 	  => $this->input->post('id_user'),
-					'nip' 				=> $this->input->post('nip'),
+			$data1 = array(
 					'nama' 				=> $this->input->post('nama'),
-					'tgl_lahir' 	=> $this->input->post('tgl_lahir'),
-					'email' 			=> $this->input->post('email'),
-					'agama' 			=> $this->input->post('agama'),
-					'alamat' 			=> $this->input->post('alamat'),
-					'no_hp' 			=> $this->input->post('no_hp'),
-					// 'level' 			=> $this->input->post('level'),
-					'status'			=> $this->input->post('status')
-      );
+					'level' 			=> $this->input->post('level'),
+					'status' 			=> $this->input->post('status'),
+			);
 
-      $id = array('id_user' => $this->input->post('id_user'));
-      $this->M_Karyawan->update($id, $data);
-      echo json_encode(array("status" => TRUE));
+			$id = array('id_user' => $this->input->post('id_user'));
+
+			$update_user = $this->db->where($id)
+															->update('t_user',$data1);
+
+			if ($update_user) {
+				$data = array(
+
+						'nama' 				=> $this->input->post('nama'),
+						'tgl_lahir' 	=> $this->input->post('tgl_lahir'),
+						'email' 			=> $this->input->post('email'),
+						'agama' 			=> $this->input->post('agama'),
+						'alamat' 			=> $this->input->post('alamat'),
+						'no_hp' 			=> $this->input->post('no_hp'),
+						'status'			=> $this->input->post('status')
+				);
+
+	      // $id = array('id_user' => $this->input->post('id_user'));
+	      $this->M_Karyawan->update($id, $data);
+	      echo json_encode(array("status" => TRUE));
+			}else{
+				echo json_encode(array("status" => 'Gagal Update user'));
+			}
+
     }
 
     public function destroy($id)
     {
-      // $data = $this->M_Karyawan->edit_by_id($id); // get id dari database melalui model
-      // $this->M_Karyawan->delete_by_id($id);
-      // echo json_encode(array("status" => TRUE));
 			$delete = $this->db->where('id_user', $id)
 												 ->delete('t_karyawan');
 			echo json_encode(array("status" => TRUE));

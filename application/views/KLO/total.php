@@ -43,12 +43,8 @@
                 <span for="entrophi">Jumlah Entrophi : <input class="entrophy" value="" readonly/></span>
             </div>
           </div>
-          <div class="col-sm-12">
-            <div class="form-group">
-                <!-- <span for="jml_gain">Jumlah Gain : <?php echo $jml_gain ?></span> -->
-            </div>
-          </div>
 
+          
           <div class="table table-responsive">
                   <table class="table table-bordered table-striped" id="">
                     <thead>
@@ -184,6 +180,7 @@
             </table>
           </div>
           <br/>
+
           <div class="table table-responsive">
               <table class="table table-bordered table-striped" id="">
                 <thead>
@@ -225,6 +222,7 @@
             </table>
           </div>
           <br/>
+
           <div class="table table-responsive">
               <table class="table table-bordered table-striped" id="">
                 <thead>
@@ -283,7 +281,6 @@
 // })
 var table;
 var save_method; //for save method string
-// var base_url = '<?php echo base_url();?>';
 
 $(document).ready(function() {
   $('.entrophy').each(function(){
@@ -294,6 +291,7 @@ $(document).ready(function() {
     var count = -(sp/jawaban)*Math.log2((sp/jawaban)) + -(stp/jawaban)*Math.log2((stp/jawaban));
     $('.entrophy').val(count);
   })
+
   // waktu
   $('.waktu_en_sp').each(function(){
     var jawaban = $('.jawaban').val();
@@ -303,6 +301,7 @@ $(document).ready(function() {
     var count = -(sp/sp)*Math.log2((sp/sp)) + -(stp/sp)*Math.log2((stp/sp));
     $('.waktu_en_sp').val(count);
   })
+
 //datatables
   // table = $('#show_table').DataTable({
   //     "processing": true, //Feature control the processing indicator.
