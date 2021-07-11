@@ -41,7 +41,6 @@ class KLO_jawaban extends CI_Controller {
 	        $row[] = $field->nama;
 	        $row[] = $field->jk;
 	        $row[] = $field->nohp;
-					$row[] = $field->id_kuisioner;
 	        $row[] = $field->jawaban;
 					$row[] = $field->nama_karyawan;
 					$row[] = $field->tgl_jawaban;

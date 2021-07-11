@@ -28,14 +28,14 @@ class KLO_kuisioner_result extends CI_Controller {
 	//     // print_r($kuisioner);die();
 	//     $data = array();
 	//     $no = $_POST['start']+1;
-  //
+	//
 	//     foreach ($kuisioner as $field) {
-  //
+	//
 	//         $row = array();
 	//         $row[] = $no++;
 	//         $row[] = $field->id_kuisioner;
 	//         $row[] = $field->kuisioner;
-  //
+	//
 	//         $row[] = '<a class="btn btn-warning btn-sm" href="javascript:void(0)"
 	//                   title="Edit" onclick="ajax_edit('."'".$field->id_kuisioner."'".')">
 	//                   <i class="fa fa-edit"></i>
@@ -44,19 +44,19 @@ class KLO_kuisioner_result extends CI_Controller {
 	//                   title="Hapus" onclick="ajax_delete('."'".$field->id_kuisioner."'".')">
 	//                   <i class="fa fa-trash"></i>
 	//            </a>';
-  //
+	//
 	//         $data[] = $row;
-  //
+	//
 	//     }
-  //
-  //
+	//
+	//
 	//     $output = array(
 	//                     "draw" => $_POST['draw'],
 	//                     "recordsTotal" => $this->M_Kuisioner->count_all(),
 	//                     "recordsFiltered" => $this->M_Kuisioner->count_filtered(),
 	//                     "data" => $data,
 	//     );
-  //
+	//
 	//     //output to json format
 	//     echo json_encode($output);
   //   }

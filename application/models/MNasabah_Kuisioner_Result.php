@@ -75,7 +75,7 @@ class MNasabah_Kuisioner_Result extends CI_Model{
   {
       $get_soal= $this->db->select('*')->from('t_kuisioner')->get()->result();
 
-      $jumlah_soal = count($get_soal);
+      $jumlah_soal = 4;
 
       for ($i=1; $i < $jumlah_soal+1 ; $i++) {
 
@@ -89,6 +89,8 @@ class MNasabah_Kuisioner_Result extends CI_Model{
         $data[$i]['jawaban'] = $this->input->post('jawaban'.$i, true);
         $data[$i]['nama_karyawan'] = $this->input->post('nama_karyawan', true);
         $data[$i]['tgl_jawaban'] = date('Y-m-d');
+        $data[$i]['layanan'] = $this->input->post('layanan', true);
+
 
 				$this->db->insert('t_kuisioner_result',$data[$i]); // save ke tabel hasil papikostik
       }

@@ -30,7 +30,6 @@
                     <th>Nama</th>
                     <th>Jenis Kelamin</th>
                     <th>No Handphone</th>
-                    <th>ID Kuisioner</th>
                     <th>Jawaban</th>
                     <th>Nama Karyawan</th>
                     <th>Tanggal Pengisian</th>

@@ -83,7 +83,7 @@
                       <div class="col-sm-6">
                           <div class="form-group">
                               <!-- <label for="id_kuisioner_result">ID Kuisioner</label> -->
-                              <input type="hidden" class="form-control" id="id_kuisioner_result" name="id_kuisioner_result" placeholder="ID Kuisioner" readonly value="<?php echo $kode; ?>">
+                              <input  class="form-control" id="id_kuisioner_result" name="id_kuisioner_result" placeholder="ID Kuisioner" value="<?php echo $kode; ?>" readonly>
                               <span class="help-block text-danger"></span>
                           </div>
                       </div>
@@ -165,8 +165,8 @@
                                         <td><input type='radio' name='jawaban<?=$i?>' value='5' required /> Sangat Puas</td>
                                         <?php endif; ?>
                                         <?php if ($soal->id_kuisioner == '5'): ?>
-                                          <td><input type='radio' name='jawaban<?=$i?>' value='5' required /> Ya</td>
-                                          <td><input type='radio' name='jawaban<?=$i?>' value='1' required /> Tidak</td>
+                                          <td><input type='radio' name='layanan' value='5' required /> Ya</td>
+                                          <td><input type='radio' name='layanan' value='1' required /> Tidak</td>
                                         <?php endif; ?>
                                       </tr>
                                   <?php $i++;} ?>
