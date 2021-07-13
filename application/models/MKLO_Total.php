@@ -466,7 +466,6 @@ class MKLO_Total extends CI_Model{
         return $jumlahPuas;
       }
 
-
       public function get_db_waktutidakpuas(){
         $this->db->select('*');
         $this->db->from('t_kuisioner_result');

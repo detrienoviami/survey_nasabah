@@ -103,330 +103,314 @@
 
 
 
-            <span><b>ATRIBUT WAKTU</b></span>
-            <div class="table table-responsive">
-              <table class="table table-bordered table-striped" id="">
-                <thead>
+        <span><b>ATRIBUT WAKTU</b></span>
+        <div class="table table-responsive">
+          <table class="table table-bordered table-striped" id="">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Atribut</th>
+                <th colspan="2">Sangat Tidak Puas</th>
+                <th colspan="2">Tidak Puas</th>
+                <th colspan="2">Cukup Puas</th>
+                <th colspan="2">Puas</th>
+                <th colspan="2">Sangat Puas</th>
+              </tr>
+            </thead>
+            <tbody>
+                <?php
+                 $i=1;
+                 foreach ($waktu as  $field){ ?>
+                 <tr>
+                     <td><?php echo $i ?></td>
+                     <td><?php echo $field['atribut'] ?></td>
+                     <td colspan="2" class="waktu_stp"><?php echo $field['stp'] ?><input type="hidden" id="waktu_stp" value=<?php echo $field['stp'] ?> name='stp'/></td>
+                     <td colspan="2" class="waktu_tp" ><?php echo $field['tp'] ?><input type="hidden" id="waktu_tp" value=<?php echo $field['tp'] ?> name='tp'/></td>
+                     <td colspan="2" class="waktu_cp"><?php echo $field['cp'] ?><input type="hidden" id="waktu_cp" value=<?php echo $field['cp'] ?> name='cp'/></td>
+                     <td colspan="2" class="waktu_p"><?php echo $field['p'] ?><input type="hidden" id="waktu_p" value=<?php echo $field['p'] ?> name='p'/></td>
+                     <td colspan="2" class="waktu_sp"><?php echo $field['sp'] ?><input type="hidden" id="waktu_sp" value=<?php echo $field['sp'] ?> name='sp'/></td>
+                 </tr>
+                <?php $i++;} ?>
+
+            </tbody>
+            <tfoot>
+              <tr>
+                  <th colspan="2">Gain</th>
+                  <td colspan="10" class="waktu_gain"><input type="hidden" id="waktu_gain" value="" name="waktu_gain"/></td>
+              </tr>
+            </tfoot>
+            <tfoot>
+              <tr>
+                  <th colspan="2">Entrophi</th>
+                     <td colspan="2" class="waktu_en_stp"><input type="hidden" id="waktu_en_stp" value="" name='stp'/></td>
+                     <td colspan="2" class="waktu_en_tp"><input type="hidden" id="waktu_en_tp" value="" name='tp'/></td>
+                     <td colspan="2" class="waktu_en_cp"><input type="hidden" id="waktu_en_cp" value="" name='cp'/></td>
+                     <td colspan="2" class="waktu_en_p"><input type="hidden" id="waktu_en_p" value="" name='p'/></td>
+                     <td colspan="2" class="waktu_en_sp"><input type="hidden" id="waktu_en_sp" value="" name='sp'/></td>
+              </tr>
+            </tfoot>
+          </table>
+          <table class="table table-bordered table-striped">
+              <thead>
+                  <span>Hasil klasifikasi penilaian pada atribut waktu:</span>
                   <tr>
-                    <th>No</th>
-                    <th>Atribut</th>
-                    <th colspan="2">Sangat Tidak Puas</th>
-                    <th colspan="2">Tidak Puas</th>
-                    <th colspan="2">Cukup Puas</th>
-                    <th colspan="2">Puas</th>
-                    <th colspan="2">Sangat Puas</th>
+                    <!-- <th>No</th> -->
+                    <th>jawaban</th>
+                    <th >Sangat Tidak Puas</th>
+                    <th >Tidak Puas</th>
                   </tr>
-                </thead>
-                <tbody>
-                    <?php
-                     $i=1;
-                     foreach ($waktu as  $field){ ?>
-                     <tr>
-                         <td><?php echo $i ?></td>
-                         <td><?php echo $field['atribut'] ?></td>
-                         <td colspan="2" class="waktu_stp"><?php echo $field['stp'] ?><input type="hidden" id="waktu_stp" value=<?php echo $field['stp'] ?> name='stp'/></td>
-                         <td colspan="2" class="waktu_tp" ><?php echo $field['tp'] ?><input type="hidden" id="waktu_tp" value=<?php echo $field['tp'] ?> name='tp'/></td>
-                         <td colspan="2" class="waktu_cp"><?php echo $field['cp'] ?><input type="hidden" id="waktu_cp" value=<?php echo $field['cp'] ?> name='cp'/></td>
-                         <td colspan="2" class="waktu_p"><?php echo $field['p'] ?><input type="hidden" id="waktu_p" value=<?php echo $field['p'] ?> name='p'/></td>
-                         <td colspan="2" class="waktu_sp"><?php echo $field['sp'] ?><input type="hidden" id="waktu_sp" value=<?php echo $field['sp'] ?> name='sp'/></td>
-                     </tr>
-                    <?php $i++;} ?>
+              </thead>
+              <tbody>
+                <?php
+                  $i=1;
+                 foreach ($waktu_layanan as  $layanan){ ?>
+                <tr>
+                     <!-- <td><?php echo $i ?></td> -->
+                     <td ><?php echo $layanan['jawaban'] ?></td>
+                     <td class="waktu_puas<?php echo $i ?>"><?php echo $layanan['puas'] ?>
+                       <input type="hidden" id="waktu_puas<?php echo $i ?>" name="" value="<?php echo $layanan['puas'] ?>"/>
+                     </td>
+                     <td class="waktu_tidak_puas<?php echo $i ?>"><?php echo $layanan['tidak_puas'] ?>
+                       <input type="hidden" id="waktu_tidak_puas<?php echo $i ?>"  name="" value="<?php echo $layanan['tidak_puas'] ?>"/>
+                     </td>
+                </tr>
+                <?php $i++;} ?>
+              </tbody>
+          </table>
+        </div>
+        <br/>
 
-                </tbody>
-                <tfoot>
+        <span><b>ATRIBUT AKURAT</b></span>
+        <div class="table table-responsive">
+          <table class="table table-bordered table-striped" id="">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Atribut</th>
+                <th colspan="2">Sangat Tidak Puas</th>
+                <th colspan="2">Tidak Puas</th>
+                <th colspan="2">Cukup Puas</th>
+                <th colspan="2">Puas</th>
+                <th colspan="2">Sangat Puas</th>
+              </tr>
+            </thead>
+            <tbody>
+                <?php
+                 $i=1;
+                 foreach ($akurat as  $field){ ?>
+                 <tr>
+                     <td><?php echo $i ?></td>
+                     <td><?php echo $field['atribut'] ?></td>
+                     <td colspan="2" class="akurat_stp"><?php echo $field['stp'] ?><input type="hidden" id="akurat_stp" value=<?php echo $field['stp'] ?> name='stp'/></td>
+                     <td colspan="2" class="akurat_tp" ><?php echo $field['tp'] ?><input type="hidden" id="akurat_tp" value=<?php echo $field['tp'] ?> name='tp'/></td>
+                     <td colspan="2" class="akurat_cp"><?php echo $field['cp'] ?><input type="hidden" id="akurat_cp" value=<?php echo $field['cp'] ?> name='cp'/></td>
+                     <td colspan="2" class="akurat_p"><?php echo $field['p'] ?><input type="hidden" id="akurat_p" value=<?php echo $field['p'] ?> name='p'/></td>
+                     <td colspan="2" class="akurat_sp"><?php echo $field['sp'] ?><input type="hidden" id="akurat_sp" value=<?php echo $field['sp'] ?> name='sp'/></td>
+                 </tr>
+                <?php $i++;} ?>
+
+            </tbody>
+            <tfoot>
+              <tr>
+                  <th colspan="2">Gain</th>
+                  <td colspan="10" class="akurat_gain"><input type="hidden" id="akurat_gain" value="" name="akurat_gain"/></td>
+              </tr>
+            </tfoot>
+            <tfoot>
+              <tr>
+                  <th colspan="2">Entrophi</th>
+                     <td colspan="2" class="akurat_en_stp"><input type="hidden" id="akurat_en_stp" value="" name='stp'/></td>
+                     <td colspan="2" class="akurat_en_tp"><input type="hidden" id="akurat_en_tp" value="" name='tp'/></td>
+                     <td colspan="2" class="akurat_en_cp"><input type="hidden" id="akurat_en_cp" value="" name='cp'/></td>
+                     <td colspan="2" class="akurat_en_p"><input type="hidden" id="akurat_en_p" value="" name='p'/></td>
+                     <td colspan="2" class="akurat_en_sp"><input type="hidden" id="akurat_en_sp" value="" name='sp'/></td>
+              </tr>
+            </tfoot>
+          </table>
+          <table class="table table-bordered table-striped">
+              <thead>
+                  <span>Hasil klasifikasi penilaian pada atribut akurat:</span>
                   <tr>
-                      <th colspan="2">Gain</th>
-                      <td colspan="10" class="waktu_gain"><input type="hidden" id="waktu_gain" value="" name="waktu_gain"/></td>
+                    <!-- <th>No</th> -->
+                    <th>jawaban</th>
+                    <th >Sangat Tidak Puas</th>
+                    <th >Tidak Puas</th>
                   </tr>
-                </tfoot>
-                <tfoot>
+              </thead>
+              <tbody>
+                <?php
+                  $i=1;
+                 foreach ($akurat_layanan as  $layanan){ ?>
+                <tr>
+                     <!-- <td><?php echo $i ?></td> -->
+                     <td ><?php echo $layanan['jawaban'] ?></td>
+                     <td class="akurat_puas<?php echo $i ?>"><?php echo $layanan['puas'] ?>
+                       <input type="hidden" id="akurat_puas<?php echo $i ?>" name="" value="<?php echo $layanan['puas'] ?>"/>
+                     </td>
+                     <td class="akurat_tidak_puas<?php echo $i ?>"><?php echo $layanan['tidak_puas'] ?>
+                       <input type="hidden" id="akurat_tidak_puas<?php echo $i ?>"  name="" value="<?php echo $layanan['tidak_puas'] ?>"/>
+                     </td>
+                </tr>
+                <?php $i++;} ?>
+              </tbody>
+          </table>
+        </div>
+        <br/>
+
+
+        <span><b>ATRIBUT FOKUS</b></span>
+        <div class="table table-responsive">
+          <table class="table table-bordered table-striped" id="">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Atribut</th>
+                <th colspan="2">Sangat Tidak Puas</th>
+                <th colspan="2">Tidak Puas</th>
+                <th colspan="2">Cukup Puas</th>
+                <th colspan="2">Puas</th>
+                <th colspan="2">Sangat Puas</th>
+              </tr>
+            </thead>
+            <tbody>
+                <?php
+                 $i=1;
+                 foreach ($fokus as  $field){ ?>
+                 <tr>
+                     <td><?php echo $i ?></td>
+                     <td><?php echo $field['atribut'] ?></td>
+                     <td colspan="2" class="fokus_stp"><?php echo $field['stp'] ?><input type="hidden" id="fokus_stp" value=<?php echo $field['stp'] ?> name='stp'/></td>
+                     <td colspan="2" class="fokus_tp" ><?php echo $field['tp'] ?><input type="hidden" id="fokus_tp" value=<?php echo $field['tp'] ?> name='tp'/></td>
+                     <td colspan="2" class="fokus_cp"><?php echo $field['cp'] ?><input type="hidden" id="fokus_cp" value=<?php echo $field['cp'] ?> name='cp'/></td>
+                     <td colspan="2" class="fokus_p"><?php echo $field['p'] ?><input type="hidden" id="fokus_p" value=<?php echo $field['p'] ?> name='p'/></td>
+                     <td colspan="2" class="fokus_sp"><?php echo $field['sp'] ?><input type="hidden" id="fokus_sp" value=<?php echo $field['sp'] ?> name='sp'/></td>
+                 </tr>
+                <?php $i++;} ?>
+
+            </tbody>
+            <tfoot>
+              <tr>
+                  <th colspan="2">Gain</th>
+                  <td colspan="10" class="fokus_gain"><input type="hidden" id="fokus_gain" value="" name="fokus_gain"/></td>
+              </tr>
+            </tfoot>
+            <tfoot>
+              <tr>
+                  <th colspan="2">Entrophi</th>
+                     <td colspan="2" class="fokus_en_stp"><input type="hidden" id="fokus_en_stp" value="" name='stp'/></td>
+                     <td colspan="2" class="fokus_en_tp"><input type="hidden" id="fokus_en_tp" value="" name='tp'/></td>
+                     <td colspan="2" class="fokus_en_cp"><input type="hidden" id="fokus_en_cp" value="" name='cp'/></td>
+                     <td colspan="2" class="fokus_en_p"><input type="hidden" id="fokus_en_p" value="" name='p'/></td>
+                     <td colspan="2" class="fokus_en_sp"><input type="hidden" id="fokus_en_sp" value="" name='sp'/></td>
+              </tr>
+            </tfoot>
+          </table>
+          <table class="table table-bordered table-striped">
+              <thead>
+                  <span>Hasil klasifikasi penilaian pada atribut fokus:</span>
                   <tr>
-                      <th colspan="2">Entrophi</th>
-                         <td colspan="2" class="waktu_en_stp"><input type="hidden" id="waktu_en_stp" value="" name='stp'/></td>
-                         <td colspan="2" class="waktu_en_tp"><input type="hidden" id="waktu_en_tp" value="" name='tp'/></td>
-                         <td colspan="2" class="waktu_en_cp"><input type="hidden" id="waktu_en_cp" value="" name='cp'/></td>
-                         <td colspan="2" class="waktu_en_p"><input type="hidden" id="waktu_en_p" value="" name='p'/></td>
-                         <td colspan="2" class="waktu_en_sp"><input type="hidden" id="waktu_en_sp" value="" name='sp'/></td>
+                    <!-- <th>No</th> -->
+                    <th>jawaban</th>
+                    <th >Sangat Tidak Puas</th>
+                    <th >Tidak Puas</th>
                   </tr>
-                </tfoot>
-              </table>
-              <table class="table table-bordered table-striped">
-                  <thead>
-                      <span>Hasil klasifikasi penilaian pada atribut waktu:</span>
-                      <tr>
-                        <!-- <th>No</th> -->
-                        <th>jawaban</th>
-                        <th >Sangat Tidak Puas</th>
-                        <th >Tidak Puas</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                      $i=1;
-                     foreach ($waktu_layanan as  $layanan){ ?>
-                    <tr>
-                         <!-- <td><?php echo $i ?></td> -->
-                         <td ><?php echo $layanan['jawaban'] ?></td>
-                         <td class="waktu_puas<?php echo $i ?>"><?php echo $layanan['puas'] ?>
-                           <input type="hidden" id="waktu_puas<?php echo $i ?>" name="" value="<?php echo $layanan['puas'] ?>"/>
-                         </td>
-                         <td class="waktu_tidak_puas<?php echo $i ?>"><?php echo $layanan['tidak_puas'] ?>
-                           <input type="hidden" id="waktu_tidak_puas<?php echo $i ?>"  name="" value="<?php echo $layanan['tidak_puas'] ?>"/>
-                         </td>
-                    </tr>
-                    <?php $i++;} ?>
-                  </tbody>
-              </table>
-            </div>
-            <br/>
+              </thead>
+              <tbody>
+                <?php
+                  $i=1;
+                 foreach ($fokus_layanan as  $layanan){ ?>
+                <tr>
+                     <!-- <td><?php echo $i ?></td> -->
+                     <td ><?php echo $layanan['jawaban'] ?></td>
+                     <td class="fokus_puas<?php echo $i ?>"><?php echo $layanan['puas'] ?>
+                       <input type="hidden" id="fokus_puas<?php echo $i ?>" name="" value="<?php echo $layanan['puas'] ?>"/>
+                     </td>
+                     <td class="fokus_tidak_puas<?php echo $i ?>"><?php echo $layanan['tidak_puas'] ?>
+                       <input type="hidden" id="fokus_tidak_puas<?php echo $i ?>"  name="" value="<?php echo $layanan['tidak_puas'] ?>"/>
+                     </td>
+                </tr>
+                <?php $i++;} ?>
+              </tbody>
+          </table>
+        </div>
+        <br/>
 
+        <span><b>ATRIBUT KEPUASAN</b></span>
+        <div class="table table-responsive">
+          <table class="table table-bordered table-striped" id="">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Atribut</th>
+                <th colspan="2">Sangat Tidak Puas</th>
+                <th colspan="2">Tidak Puas</th>
+                <th colspan="2">Cukup Puas</th>
+                <th colspan="2">Puas</th>
+                <th colspan="2">Sangat Puas</th>
+              </tr>
+            </thead>
+            <tbody>
+                <?php
+                 $i=1;
+                 foreach ($kepuasan as  $field){ ?>
+                 <tr>
+                     <td><?php echo $i ?></td>
+                     <td><?php echo $field['atribut'] ?></td>
+                     <td colspan="2" class="kepuasan_stp"><?php echo $field['stp'] ?><input type="hidden" id="kepuasan_stp" value=<?php echo $field['stp'] ?> name='stp'/></td>
+                     <td colspan="2" class="kepuasan_tp" ><?php echo $field['tp'] ?><input type="hidden" id="kepuasan_tp" value=<?php echo $field['tp'] ?> name='tp'/></td>
+                     <td colspan="2" class="kepuasan_cp"><?php echo $field['cp'] ?><input type="hidden" id="kepuasan_cp" value=<?php echo $field['cp'] ?> name='cp'/></td>
+                     <td colspan="2" class="kepuasan_p"><?php echo $field['p'] ?><input type="hidden" id="kepuasan_p" value=<?php echo $field['p'] ?> name='p'/></td>
+                     <td colspan="2" class="kepuasan_sp"><?php echo $field['sp'] ?><input type="hidden" id="kepuasan_sp" value=<?php echo $field['sp'] ?> name='sp'/></td>
+                 </tr>
+                <?php $i++;} ?>
 
-
-          <span><b>ATRIBUT AKURAT</b></span>
-          <div class="table table-responsive">
-                <table class="table table-bordered table-striped" id="">
-                <thead>
+            </tbody>
+            <tfoot>
+              <tr>
+                  <th colspan="2">Gain</th>
+                  <td colspan="10" class="kepuasan_gain"><input type="hidden" id="kepuasan_gain" value="" name="kepuasan_gain"/></td>
+              </tr>
+            </tfoot>
+            <tfoot>
+              <tr>
+                  <th colspan="2">Entrophi</th>
+                     <td colspan="2" class="kepuasan_en_stp"><input type="hidden" id="kepuasan_en_stp" value="" name='stp'/></td>
+                     <td colspan="2" class="kepuasan_en_tp"><input type="hidden" id="kepuasan_en_tp" value="" name='tp'/></td>
+                     <td colspan="2" class="kepuasan_en_cp"><input type="hidden" id="kepuasan_en_cp" value="" name='cp'/></td>
+                     <td colspan="2" class="kepuasan_en_p"><input type="hidden" id="kepuasan_en_p" value="" name='p'/></td>
+                     <td colspan="2" class="kepuasan_en_sp"><input type="hidden" id="kepuasan_en_sp" value="" name='sp'/></td>
+              </tr>
+            </tfoot>
+          </table>
+          <table class="table table-bordered table-striped">
+              <thead>
+                  <span>Hasil klasifikasi penilaian pada atribut waktu:</span>
                   <tr>
-                    <th>No</th>
-                    <th>Atribut</th>
-                    <th colspan="2">Sangat Tidak Puas</th>
-                    <th colspan="2">Tidak Puas</th>
-                    <th colspan="2">Cukup Puas</th>
-                    <th colspan="2">Puas</th>
-                    <th colspan="2">Sangat Puas</th>
+                    <!-- <th>No</th> -->
+                    <th>jawaban</th>
+                    <th >Sangat Tidak Puas</th>
+                    <th >Tidak Puas</th>
                   </tr>
-                </thead>
-                <tbody>
-                    <?php
-                      $i=1;
-                     foreach ($akurat as  $field){ ?>
-                     <tr>
-                         <td><?php echo $i ?></td>
-                         <td><?php echo $field['atribut'] ?><input type="hidden" value=<?php echo $field['atribut'] ?> name='atribut'/></td>
-                         <td colspan="2" class="akurat_stp"><?php echo $field['stp'] ?><input type="hidden" id="akurat_stp" value=<?php echo $field['stp'] ?> name='stp'/></td>
-                         <td colspan="2" class="akurat_tp" ><?php echo $field['tp'] ?><input type="hidden" id="akurat_tp" value=<?php echo $field['tp'] ?> name='tp'/></td>
-                         <td colspan="2" class="akurat_cp"><?php echo $field['cp'] ?><input type="hidden" id="akurat_cp" value=<?php echo $field['cp'] ?> name='cp'/></td>
-                         <td colspan="2" class="akurat_p"><?php echo $field['p'] ?><input type="hidden" id="akurat_p" value=<?php echo $field['p'] ?> name='p'/></td>
-                         <td colspan="2" class="akurat_sp"><?php echo $field['sp'] ?><input type="hidden" id="akurat_sp" value=<?php echo $field['sp'] ?> name='sp'/></td>
-                     </tr>
-                    <?php $i++;} ?>
-                </tbody>
-                <table>
-                    <thead>
-                      <span>Hasil klasifikasi pada atribut akurat, yaitu:</span>
-                      <tr>
-                        <!-- <th>No</th> -->
-                        <th>jawaban</th>
-                        <th >Sangat Tidak Puas</th>
-                        <th >Tidak Puas</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                        $i=1;
-                       foreach ($akurat_layanan as  $layanan){ ?>
-                      <tr>
-                           <!-- <td><?php echo $i ?></td> -->
-                           <td ><?php echo $layanan['jawaban'] ?></td>
-                           <td class="akurat_puas<?php echo $i ?>"><?php echo $layanan['puas'] ?></td>
-                           <td class="akurat_tidak_puas<?php echo $i ?>"><?php echo $layanan['tidak_puas'] ?></td>
-                      </tr>
-                      <?php $i++;} ?>
-                    </tbody>
-                </table>
-                <tfoot>
-                    <tr>
-                        <th colspan="2" scope="row">Entrophi</th>
-                           <td colspan="2" class="akurat_en_stp"><input type="hidden" id="akurat_en_stp" value="" name='stp'/></td>
-                           <td colspan="2" class="akurat_en_tp"><input type="hidden" id="akurat_en_tp" value="" name='tp'/></td>
-                           <td colspan="2" class="akurat_en_cp"><input type="hidden" id="akurat_en_cp" value="" name='cp'/></td>
-                           <td colspan="2" class="akurat_en_p"><input type="hidden" id="akurat_en_p" value="" name='p'/></td>
-                           <td colspan="2" class="akurat_en_sp"><input type="hidden" id="akurat_en_sp" value="" name='sp'/></td>
-                    </tr>
-                    <tr>
-                        <th colspan="2">Gain</th>
-                           <td colspan="2" class="akurat_gain_stp"><input type="hidden" id="akurat_gain_stp" value="" name='stp'/></td>
-                           <td colspan="2" class="akurat_gain_tp"><input type="hidden" id="akurat_gain_tp" value="" name='tp'/></td>
-                           <td colspan="2" class="akurat_gain_cp"><input type="hidden" id="akurat_gain_cp" value="" name='cp'/></td>
-                           <td colspan="2" class="akurat_gain_p"><input type="hidden" id="akurat_gain_p" value="" name='p'/></td>
-                           <td colspan="2" class="akurat_gain_sp"><input type="hidden" id="akurat_gain_sp" value="" name='sp'/></td>
-                    </tr>
-                </tfoot>
-                <!-- <tfoot>
-                    <tr>
-                        <th colspan="2" scope="row">Layanan</th>
-                        <?php foreach ($waktu_layanan as  $layanan){ ?>
-                          <?php if ($layanan['stp'] == false || $layanan['tp'] == false || $layanan['cp'] == false || $layanan['p'] == false || $layanan['sp'] == false ): ?>
-                            <td  class="puas">Puas : 0<input type="hidden" class="puas" value="0" name='puas'/></td>
-                            <td  class="tidak_puas" > Tidak Puas : 0<input type="hidden" class="tidak_puas" value="0"  name='tidak_puas'/></td>
-                          <?php endif; ?>
-
-                          <?php if ($layanan['stp'] !== false || $layanan['tp'] !== false || $layanan['cp'] !== false || $layanan['p'] !== false || $layanan['sp'] !== false ): ?>
-                          <td  class="puas">Puas : <?php echo $layanan['puas'] ?><input type="hidden" class="puas" value=<?php echo $layanan['puas'] ?> name='puas'/></td>
-                          <td  class="tidak_puas" > Tidak Puas : <?php echo $layanan['tidak_puas'] ?><input type="hidden" class="tidak_puas" value=<?php echo $layanan['tidak_puas'] ?>  name='tidak_puas'/></td>
-                          <?php endif; ?>
-                        <?php ;} ?>
-                    </tr>
-                </tfoot> -->
-            </table>
-          </div>
-          <br/>
-          <br/>
-
-
-          <span><b>ATRIBUT FOKUS</b></span>
-          <div class="table table-responsive">
-            <table class="table table-bordered table-striped" id="">
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Atribut</th>
-                    <th colspan="2">Sangat Tidak Puas</th>
-                    <th colspan="2">Tidak Puas</th>
-                    <th colspan="2">Cukup Puas</th>
-                    <th colspan="2">Puas</th>
-                    <th colspan="2">Sangat Puas</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    <?php
-                      $i=1;
-                     foreach ($fokus as  $field){ ?>
-                     <tr>
-                         <td><?php echo $i ?></td>
-                         <td><?php echo $field['atribut'] ?><input type="hidden" value=<?php echo $field['atribut'] ?> name='atribut'/></td>
-                         <td colspan="2" class="fokus_stp"><?php echo $field['stp'] ?><input type="hidden" id="fokus_stp" value=<?php echo $field['stp'] ?> name='stp'/></td>
-                         <td colspan="2" class="fokus_tp" ><?php echo $field['tp'] ?><input type="hidden" id="fokus_tp" value=<?php echo $field['tp'] ?> name='tp'/></td>
-                         <td colspan="2" class="fokus_cp"><?php echo $field['cp'] ?><input type="hidden" id="fokus_cp" value=<?php echo $field['cp'] ?> name='cp'/></td>
-                         <td colspan="2" class="fokus_p"><?php echo $field['p'] ?><input type="hidden" id="fokus_p" value=<?php echo $field['p'] ?> name='p'/></td>
-                         <td colspan="2" class="fokus_sp"><?php echo $field['sp'] ?><input type="hidden" id="fokus_sp" value=<?php echo $field['sp'] ?> name='sp'/></td>
-                     </tr>
-                    <?php $i++;} ?>
-                </tbody>
-
-                <table>
-                    <thead>
-                      <span>Hasil klasifikasi pada atribut fokus, yaitu:</span>
-                      <tr>
-                        <!-- <th>No</th> -->
-                        <th>jawaban</th>
-                        <th >Sangat Tidak Puas</th>
-                        <th >Tidak Puas</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                        $i=1;
-                       foreach ($fokus_layanan as  $layanan){ ?>
-                      <tr>
-                           <!-- <td><?php echo $i ?></td> -->
-                           <td ><?php echo $layanan['jawaban'] ?></td>
-                           <td class="fokus_puas<?php echo $i ?>"><?php echo $layanan['puas'] ?></td>
-                           <td class="fokus_tidak_puas<?php echo $i ?>"><?php echo $layanan['tidak_puas'] ?></td>
-                      </tr>
-                      <?php $i++;} ?>
-                    </tbody>
-                </table>
-                <tfoot>
-                    <tr>
-                        <th colspan="2" scope="row">Entrophi</th>
-                           <td colspan="2" class="fokus_en_stp"><input type="hidden" class="fokus_en_stp" value="" name='stp'/></td>
-                           <td colspan="2" class="fokus_en_tp"><input type="hidden" class="fokus_en_tp" value="" name='tp'/></td>
-                           <td colspan="2" class="fokus_en_cp"><input type="hidden" class="fokus_en_cp" value="" name='cp'/></td>
-                           <td colspan="2" class="fokus_en_p"><input type="hidden" class="fokus_en_p" value="" name='p'/></td>
-                           <td colspan="2" class="fokus_en_sp"><input type="hidden" class="fokus_en_sp" value="" name='sp'/></td>
-                    </tr>
-                    <tr>
-                        <th colspan="2">Gain</th>
-                           <td colspan="2" class="fokus_en_stp"><input type="hidden" id="fokus_en_stp" value="" name='stp'/></td>
-                           <td colspan="2" class="fokus_en_tp"><input type="hidden" id="fokus_en_tp" value="" name='tp'/></td>
-                           <td colspan="2" class="fokus_en_cp"><input type="hidden" id="fokus_en_cp" value="" name='cp'/></td>
-                           <td colspan="2" class="fokus_en_p"><input type="hidden" id="fokus_en_p" value="" name='p'/></td>
-                           <td colspan="2" class="fokus_en_sp"><input type="hidden" id="fokus_en_sp" value="" name='sp'/></td>
-                    </tr>
-
-                </tfoot>
-                <tfoot>
-
-                </tfoot>
-                <!-- <tfoot>
-                    <tr>
-                        <th colspan="2" scope="row">Layanan</th>
-                        <?php foreach ($waktu_layanan as  $layanan){ ?>
-                          <?php if ($layanan['stp'] == false || $layanan['tp'] == false || $layanan['cp'] == false || $layanan['p'] == false || $layanan['sp'] == false ): ?>
-                            <td  class="puas">Puas : 0<input type="hidden" class="puas" value="0" name='puas'/></td>
-                            <td  class="tidak_puas" > Tidak Puas : 0<input type="hidden" class="tidak_puas" value="0"  name='tidak_puas'/></td>
-                          <?php endif; ?>
-
-                          <?php if ($layanan['stp'] !== false || $layanan['tp'] !== false || $layanan['cp'] !== false || $layanan['p'] !== false || $layanan['sp'] !== false ): ?>
-                          <td  class="puas">Puas : <?php echo $layanan['puas'] ?><input type="hidden" class="puas" value=<?php echo $layanan['puas'] ?> name='puas'/></td>
-                          <td  class="tidak_puas" > Tidak Puas : <?php echo $layanan['tidak_puas'] ?><input type="hidden" class="tidak_puas" value=<?php echo $layanan['tidak_puas'] ?>  name='tidak_puas'/></td>
-                          <?php endif; ?>
-                        <?php ;} ?>
-                    </tr>
-                </tfoot> -->
-            </table>
-          </div>
-          <br/><br/>
-
-          <span><b>ATRIBUT KEPUASAN</b></span>
-          <div class="table table-responsive">
-              <!-- <p>Puas : <span><?php echo $waktu_puas ?><input type="hidden" class="waktu_puas" value="<?php echo $waktu_puas ?>" /></span></p> -->
-              <!-- <p>Tidak Puas: <span><?php echo $waktu_tidak_puas ?><input type="hidden" class="waktu_tidak_puas" value="<?php echo $waktu_tidak_puas ?>" /></span></p> -->
-              <table class="table table-bordered table-striped" id="">
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Atribut</th>
-                    <th colspan="2">Sangat Tidak Puas</th>
-                    <th colspan="2">Tidak Puas</th>
-                    <th colspan="2">Cukup Puas</th>
-                    <th colspan="2">Puas</th>
-                    <th colspan="2">Sangat Puas</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    <?php
-                      $i=1;
-                     foreach ($kepuasan as  $field){ ?>
-                     <tr>
-                         <td><?php echo $i ?></td>
-                         <td><?php echo $field['atribut'] ?><input type="hidden" value=<?php echo $field['atribut'] ?> name='atribut'/></td>
-                         <td colspan="2" class="kepuasan_stp"><?php echo $field['stp'] ?><input type="hidden" id="kepuasan_stp" value=<?php echo $field['stp'] ?> name='stp'/></td>
-                         <td colspan="2" class="kepuasan_tp" ><?php echo $field['tp'] ?><input type="hidden" id="kepuasan_tp" value=<?php echo $field['tp'] ?> name='tp'/></td>
-                         <td colspan="2" class="kepuasan_cp"><?php echo $field['cp'] ?><input type="hidden" id="kepuasan_cp" value=<?php echo $field['cp'] ?> name='cp'/></td>
-                         <td colspan="2" class="kepuasan_p"><?php echo $field['p'] ?><input type="hidden" id="kepuasan_p" value=<?php echo $field['p'] ?> name='p'/></td>
-                         <td colspan="2" class="kepuasan_sp"><?php echo $field['sp'] ?><input type="hidden" id="kepuasan_sp" value=<?php echo $field['sp'] ?> name='sp'/></td>
-                     </tr>
-                    <?php $i++;} ?>
-                </tbody>
-
-                <table>
-                    <thead>
-                      <span><strong>Jika tidak ada nomor jawaban berarti tidak ada nasabah yang memilih jawaban tersebut di attribut Kepuasan</strong></span>
-                      <tr>
-                        <!-- <th>No</th> -->
-                        <th>jawaban</th>
-                        <th >Sangat Tidak Puas</th>
-                        <th >Tidak Puas</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                        $i=1;
-                       foreach ($kepuasan_layanan as  $layanan){ ?>
-                      <tr>
-                           <!-- <td><?php echo $i ?></td> -->
-                           <td ><?php echo $layanan['jawaban'] ?></td>
-                           <td class="kepuasan_puas<?php echo $i ?>"><?php echo $layanan['puas'] ?></td>
-                           <td class="kepuasan_tidak_puas<?php echo $i ?>"><?php echo $layanan['tidak_puas'] ?></td>
-                      </tr>
-                      <?php $i++;} ?>
-                    </tbody>
-                </table>
-            </table>
-          </div>
-          <br/>
+              </thead>
+              <tbody>
+                <?php
+                  $i=1;
+                 foreach ($kepuasan_layanan as  $layanan){ ?>
+                <tr>
+                     <!-- <td><?php echo $i ?></td> -->
+                     <td ><?php echo $layanan['jawaban'] ?></td>
+                     <td class="kepuasan_puas<?php echo $i ?>"><?php echo $layanan['puas'] ?>
+                       <input type="hidden" id="kepuasan_puas<?php echo $i ?>" name="" value="<?php echo $layanan['puas'] ?>"/>
+                     </td>
+                     <td class="kepuasan_tidak_puas<?php echo $i ?>"><?php echo $layanan['tidak_puas'] ?>
+                       <input type="hidden" id="kepuasan_tidak_puas<?php echo $i ?>"  name="" value="<?php echo $layanan['tidak_puas'] ?>"/>
+                     </td>
+                </tr>
+                <?php $i++;} ?>
+              </tbody>
+          </table>
+        </div>
+        <br/>
           <br/>
 
         </div>
@@ -437,8 +421,8 @@
 
 <script src="<?php echo base_url()?>assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 <script src="<?php echo base_url()?>assets/asset/js/waktu.js"></script>
-<script src="<?php echo base_url()?>assets/asset/js/fokus.js"></script>
 <script src="<?php echo base_url()?>assets/asset/js/akurat.js"></script>
+<script src="<?php echo base_url()?>assets/asset/js/fokus.js"></script>
 <script src="<?php echo base_url()?>assets/asset/js/kepuasan.js"></script>
 <script type="text/javascript">
     // $('.entrophy').each({
@@ -474,7 +458,6 @@
         $('.modal-title').text('Hitung Algortima'); // untuk memberi judul pada modal
         $('.form-group').removeClass('has-error'); // untuk menampilkan pesan error / validasi pada modal
         $('.help-block').empty(); // untuk menampilkan pesan error / validasi pada modal
-
     }
 });
 
