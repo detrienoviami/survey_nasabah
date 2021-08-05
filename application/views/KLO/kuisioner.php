@@ -18,9 +18,11 @@
     <div class="container-fluid">
       <div class="card">
         <div class="card-body">
+           <?php if ($this->session->userdata('level') == 'KLO') { ?>
           <div style="float: right;">
               <button type="button" class="btn btn-sm btn-primary" id="btn_add" onclick="add_data()"><i class="fa fa-plus"></i> Tambah Data</button>
           </div>
+            <?php } ?>
           <br><br>
           <div class="table table-responsive">
               <table class="table table-bordered table-striped" id="show_table">
@@ -29,7 +31,9 @@
                     <th>No</th>
                     <th>ID kuisioner</th>
                     <th>Kuisioner</th>
+                     <?php if ($this->session->userdata('level') == 'KLO') { ?>
                     <th>Action</th>
+                      <?php } ?>
                   </tr>
                 </thead>
               </table>

@@ -21,6 +21,8 @@ class KLO_total extends CI_Controller {
 
 		//hitung atribut waktu
 		$data['kesimpulan'] = $this->MKLO_Total->simpulan();
+		
+
 		$data['waktu'] = $this->MKLO_Total->get_db_waktu();
 		$data['waktu_layanan'] = $this->MKLO_Total->get_layananwaktu();
 		$data['entrophy_waktu'] = $this->MKLO_Total->hitung_entropy_waktu();

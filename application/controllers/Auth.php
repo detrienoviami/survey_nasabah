@@ -39,7 +39,7 @@ class Auth extends CI_Controller {
                 'id_user'   => $user['id_user'],
                 'username'  => $user['username'],
                 'nama'      => $user['nama'],
-                // 'level'     => $user['level']
+                'level'     => $user['level']
             ];
             $this->session->set_userdata($data);
             if($user['level'] == 'KLO')

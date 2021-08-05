@@ -66,7 +66,6 @@
               </li>
             </ul>
           </li>
-
           <li class="nav-header">OTHER</li>
           <li class="nav-item">
             <a href="<?php echo base_url('auth/destroy')?>" class="nav-link">

@@ -59,10 +59,15 @@
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="row">
-              <div class="col-xs-8">
+              <!-- <div class="col-xs-8">
               </div>
               <div class="col-xs-4">
                   <input type="submit" name="daftar" value="Daftar" class="btn btn-primary btn-block btn-flat">
+              </div> -->
+              <div class="modal-footer no-bd">
+                  <input type="submit" name="daftar" value="Daftar" class="btn btn-primary btn-block btn-flat">
+                  <input type="" name="batal" value="Batal" class="btn btn-danger btn-block btn-flat">
+                  <a href="<?= base_url('auth'); ?>">Batal</a>
               </div>
           </div>
         </form>
@@ -80,5 +85,6 @@
             });
         });
     </script>
+
   </body>
 </html>

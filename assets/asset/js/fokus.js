@@ -13,6 +13,12 @@ if (isNaN(en5)) {
 }else {
   $('.fokus_en_sp').text();
 }
+if (en5 === Infinity ) {
+    $('#fokus_en_sp').val('0');
+    $('.fokus_en_sp').text('0');
+}else {
+  $('.fokus_en_sp').text();
+}
 
 $('.fokus_en_p').each(function(){
   var nilai = $('#fokus_p').val();
@@ -68,7 +74,6 @@ if (isNaN(en2)) {
 
 $('.fokus_en_stp').each(function(){
   var nilai = $('#fokus_stp').val();
-  // console.log(nilai);
   var sp = $('#fokus_puas1').val();
   var stp = $('#fokus_tidak_puas1').text();
   var count = -(sp/nilai)*Math.log2((sp/nilai)) + -(stp/nilai)*Math.log2((stp/nilai));

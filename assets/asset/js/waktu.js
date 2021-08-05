@@ -2,7 +2,7 @@ $('.waktu_en_sp').each(function(){
   var nilai = $('#waktu_sp').val();
   var sp = $('#waktu_puas5').val();
   var stp = $('#waktu_tidak_puas5').val();
-  var count = -(sp/nilai)*Math.log2((sp/nilai)) + -(stp/nilai)*Math.log2((stp/nilai));
+  var count = ((-sp/nilai)*Math.log2(sp/nilai) + (-stp/nilai)*Math.log2(stp/nilai));
   $('#waktu_en_sp').val(count);
   $('.waktu_en_sp').text(count);
 });
@@ -18,7 +18,7 @@ $('.waktu_en_p').each(function(){
   var nilai = $('#waktu_p').val();
   var sp = $('#waktu_puas4').val();
   var stp = $('#waktu_tidak_puas4').val();
-  var count = -(sp/nilai)*Math.log2((sp/nilai)) + -(stp/nilai)*Math.log2((stp/nilai));
+  var count = ((-sp/nilai)*Math.log2(sp/nilai) + (-stp/nilai)*Math.log2(stp/nilai));
   $('#waktu_en_p').val(count);
   $('.waktu_en_p').text(count);
 
@@ -35,7 +35,7 @@ $('.waktu_en_cp').each(function(){
   var nilai = $('#waktu_cp').val();
   var sp = $('#waktu_puas3').val();
   var stp = $('#waktu_tidak_puas3').val();
-  var count = -(sp/nilai)*Math.log2((sp/nilai)) + -(stp/nilai)*Math.log2((stp/nilai));
+  var count = ((-sp/nilai)*Math.log2(sp/nilai) + (-stp/nilai)*Math.log2(stp/nilai));
   $('#waktu_en_cp').val(count);
   $('.waktu_en_cp').text(count);
 
@@ -53,7 +53,7 @@ $('.waktu_en_tp').each(function(){
   console.log(nilai);
   var sp = $('#waktu_puas2').val();
   var stp = $('#waktu_tidak_puas2').val();
-  var count = -(sp/nilai)*Math.log2((sp/nilai)) + -(stp/nilai)*Math.log2((stp/nilai));
+  var count = ((-sp/nilai)*Math.log2(sp/nilai) + (-stp/nilai)*Math.log2(stp/nilai));
   $('#waktu_en_tp').val(count);
   $('.waktu_en_tp').text(count);
 
@@ -71,7 +71,7 @@ $('.waktu_en_stp').each(function(){
   // console.log(nilai);
   var sp = $('#waktu_puas1').val();
   var stp = $('#waktu_tidak_puas1').val();
-  var count = -(sp/nilai)*Math.log2((sp/nilai)) + -(stp/nilai)*Math.log2((stp/nilai));
+  var count = ((-sp/nilai)*Math.log2(sp/nilai) + (-stp/nilai)*Math.log2(stp/nilai));
   $('#waktu_en_stp').val(count);
   $('.waktu_en_stp').text(count);
 

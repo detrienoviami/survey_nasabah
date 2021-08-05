@@ -6,19 +6,18 @@ class KLO_laporan extends CI_Controller {
   {
 	parent::__construct();
 	$this->load->helper(array('form', 'url'));
-    // $this->load->model('M_Jamu');
-		// $this->load->model('M_Pemasok');
-		// $this->load->model('M_Pegawai');
 
     $this->load->library('form_validation');
   }
 
 	public function index()
 	{
-		$data['judul'] = "Laporan";
-		// $data['laporan'] = $this->M_Jamu->getJamu();
-		$this->template->load('laporan/index');
+		$data['title']	 = 'Laporan';
+		$data['content'] = 'KLO/laporan.php';
+
+		$this->load->view('klo/main_admin',$data);
 	}
+
 
 	// public function exportpegawai() {
 	//

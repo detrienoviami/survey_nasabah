@@ -39,12 +39,14 @@
               <p>Kuisioner</p>
             </a>
         </li>
-        <li class="nav-item">
-            <a href="<?php echo base_url('klo_atribut')?>" class="nav-link">
-              <i class="fas fa-file"></i>
-              <p>Atribut Penilaian</p>
-            </a>
-        </li>
+        <?php if ($this->session->userdata('level') == 'KLO') { ?>
+          <li class="nav-item">
+              <a href="<?php echo base_url('klo_atribut')?>" class="nav-link">
+                <i class="fas fa-file"></i>
+                <p>Atribut Penilaian</p>
+              </a>
+          </li>
+        <?php } ?>
         <li class="nav-header">Data Mining</li>
         <li class="nav-item">
           <a href="<?php echo base_url('klo_jawaban')?>" class="nav-link">
@@ -52,12 +54,15 @@
             <p>Hasil Survey Nasabah</p>
           </a>
         </li>
-        <li class="nav-item">
-            <a href="<?php echo base_url('klo_total')?>" class="nav-link">
-              <i class="fas fa-database"></i>
-              <p>Algoritma C45</p>
-            </a>
-        </li>
+        <?php if ($this->session->userdata('level') == 'Pimpinan') { ?>
+          <li class="nav-item">
+              <a href="<?php echo base_url('klo_total')?>" class="nav-link">
+                <i class="fas fa-database"></i>
+                <p>Algoritma C45</p>
+              </a>
+          </li>
+        <?php } ?>
+
         <!-- <li class="nav-item">
           <a href="<?php echo base_url('klo_total')?>" class="nav-link">
             <i class="fas fa-chart-line"></i>
@@ -70,18 +75,18 @@
               <p>Algoritma C45</p>
             </a>
         </li> -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a href="<?php echo base_url('klo_pohonkeputusan')?>" class="nav-link">
             <i class="fas fa-chart-line"></i>
             <p>Pohon Keputusan</p>
           </a>
-        </li>
-        <li class="nav-item">
+        </li> -->
+        <!-- <li class="nav-item">
           <a href="<?php echo base_url('klo_laporan')?>" class="nav-link">
             <i class="fas fa-file"></i>
             <p>Laporan</p>
           </a>
-        </li>
+        </li> -->
         <!-- <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-book-open"></i>

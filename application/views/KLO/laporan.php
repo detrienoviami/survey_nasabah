@@ -18,47 +18,24 @@
     <div class="container-fluid">
       <div class="card">
         <div class="card-body">
-          <?php if ($this->session->userdata('level') == 'KLO') { ?>
           <div style="float: right;">
-              <button type="button" class="btn btn-sm btn-primary" id="btn_add" onclick="add_data()">
-              <i class="fa fa-plus"></i> Tambah Data</button>
+              <button type="button" class="btn btn-sm btn-primary" id="btn_add" onclick="add_data()"><i class="fa fa-plus"></i> Tambah Data</button>
           </div>
-          <?php } ?>
           <br><br>
           <div class="table table-responsive">
-              <table class="table table-bordered table-striped" id="show_table">
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <!-- <th>Id User</th> -->
-                    <th>NIP</th>
-                    <th>Nama</th>
-                    <th>Tanggal Lahir</th>
-                    <th>E-mail</th>
-                    <th>Agama</th>
-                    <th>Alamat</th>
-                    <th>No Hp</th>
-                    <th>Level</th>
-                    <th>Status</th>
-                     <?php if ($this->session->userdata('level') == 'KLO') { ?>
-                    <th>Action</th>
-                  <?php } ?>
-                  </tr>
-                </thead>
-              </table>
+
           </div>
         </div>
       </div>
     </div>
   </section>
 </div>
-
 <div class="modal fade" id="modal-create" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header no-bd">
           <h5 class="modal-title">
-              <span class="fw-mediumbold">Tambah Data Karyawan</span>
+              <span class="fw-mediumbold">Tambah Data Kuisioner</span>
           </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -66,63 +43,12 @@
       </div>
       <div class="modal-body">
         <form method="POST" id="form_create" class="form_create">
-          <input type="hidden" class="form-control" id="id_user" name="id_user">
+          <input type="hidden" class="form-control" id="id_kuisioner" name="id_kuisioner">
           <div class="row">
             <div class="col-sm-12">
               <div class="form-group">
-                  <!-- <label for="nip">NIP</label> -->
-                  <input type="hidden" class="form-control" id="nip" name="nip" placeholder="NIP">
-                  <span class="help-block text-danger"></span>
-              </div>
-              <div class="form-group">
-                  <label for="nama">Nama</label>
-                  <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama">
-                  <span class="help-block text-danger"></span>
-              </div>
-              <div class="form-group">
-                  <label for="tgl_lahir">Tanggal Lahir</label>
-                  <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" placeholder="Tanggal Lahir">
-                  <span class="help-block text-danger"></span>
-              </div>
-              <div class="form-group">
-                  <label for="email">E-mail</label>
-                  <input type="email" class="form-control" id="email" name="email" placeholder="E-mail">
-                  <span class="help-block text-danger"></span>
-              </div>
-              <div class="form-group">
-                  <label for="agama">Agama</label>
-                  <input type="text" class="form-control" id="agama" name="agama" placeholder="Agama">
-                  <span class="help-block text-danger"></span>
-              </div>
-              <div class="form-group">
-                  <label for="alamat">Alamat</label>
-                  <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat">
-                  <span class="help-block text-danger"></span>
-              </div>
-              <div class="form-group">
-                  <label for="no_hp">No Handphone</label>
-                  <input type="text" class="form-control" id="no_hp" name="no_hp" placeholder="No Handphone">
-                  <span class="help-block text-danger"></span>
-              </div>
-              <div class="form-group">
-                  <label for="level">Level</label>
-                  <!-- <input type="text" class="form-control" id="level" name="level" placeholder="Level"> -->
-                  <select class="form-control" id="level" name="level">
-                        <option value="Pimpinan">Pimpinan</option>
-                        <option value="KLO">KLO</option>
-                        <option value="Kabag_CSO">Kabag CSO</option>
-                        <option value="Teller">Teller</option>
-                        <option value="CSO">CSO</option>
-                  </select>
-                  <span class="help-block text-danger"></span>
-              </div>
-              <div class="form-group">
-                  <label for="status">Status</label>
-                  <!-- <input type="text" class="form-control" id="status" name="status" placeholder="Status"> -->
-                  <select class="form-control" id="status" name="status">
-                        <option value="aktif">Aktif</option>
-                        <option value="non aktif">Non Aktif</option>
-                  </select>
+                  <label for="kuisioner">Kuisioner</label>
+                  <input type="text" class="form-control" id="kuisioner" name="kuisioner" placeholder="Kuisioner">
                   <span class="help-block text-danger"></span>
               </div>
             </div>
@@ -142,6 +68,7 @@
 
 var table;
 var save_method; //for save method string
+// var base_url = '<?php echo base_url();?>';
 
 $(document).ready(function() {
 //datatables
@@ -152,7 +79,7 @@ table = $('#show_table').DataTable({
     "order": [], //Initial no order.
     // Load data for the table's content from an Ajax source
     "ajax": {
-        "url": "<?php echo site_url('KLO_karyawan/datatables')?>",
+        "url": "<?php echo site_url('KLO_kuisioner/datatables')?>",
         "type": "POST"
     },
 
@@ -178,6 +105,7 @@ $('.datepicker').datepicker({
 function reload_table()
 {
     table.ajax.reload(null,false); //reload datatable ajax
+
 }
 
 function add_data()
@@ -204,9 +132,9 @@ function ajax_save()
     // selain itu di anggap edit/update data
 
     if(save_method == 'add') {
-        url = "<?php echo site_url('KLO_karyawan/tambah')?>"; // url untuk tambah data
+        url = "<?php echo site_url('KLO_kuisioner/tambah')?>"; // url untuk tambah data
     } else {
-        url = "<?php echo site_url('KLO_karyawan/update')?>"; // url untuk update data
+        url = "<?php echo site_url('KLO_kuisioner/update')?>"; // url untuk update data
     }
     var formData = new FormData($('#form_create')[0]); // untuk menampung hasil inputan yang di simpan untuk di kirim ke controller
 
@@ -253,10 +181,12 @@ function ajax_save()
                     title: 'Data gagal disimpan/gagal diupdate',
                     message: "<?php echo $this->session->flashdata('success'); ?>",
                     position: 'topRight'
+
             });
 
             $('#btn_save').text('Save'); //change button text
             $('#btn_save').attr('disabled',false); //set button enable
+
         }
     });
 }
@@ -269,23 +199,16 @@ function ajax_edit(id)
     $('.help-block').empty(); // jika ada inputan yang tidak sesuai / validasi
 
     $.ajax({
-        url : "<?php echo site_url('KLO_karyawan/edit')?>/" + id, // ini url edit data untuk meload data dari database(controller) ke view
+        url : "<?php echo site_url('KLO_kuisioner/edit')?>/" + id, // ini url edit data untuk meload data dari database(controller) ke view
         type: "GET",
         dataType: "JSON",
         success: function(data)
         {
-            // console.log(data);
+
             // jika berhasil menampilkan data dari database
-            $('[name="id_user"]').val(data.id_user);
-            $('[name="nip"]').val(data.nip);
-            $('[name="nama"]').val(data.nama);
-            $('[name="tgl_lahir"]').val(data.tgl_lahir);
-            $('[name="email"]').val(data.email);
-            $('[name="agama"]').val(data.agama);
-            $('[name="alamat"]').val(data.alamat);
-            $('[name="no_hp"]').val(data.no_hp);
-            $('[name="level"]').val(data.level);
-            $('[name="status"]').val(data.status);
+
+            $('[name="id_kuisioner"]').val(data.id_kuisioner);
+            $('[name="kuisioner"]').val(data.kuisioner);
 
             $('#modal-create').modal('show'); // munculkan form/kotak modal
             $('.modal-title').text('Edit Data'); // judul form modal
@@ -295,10 +218,12 @@ function ajax_edit(id)
         {
 
             // jika gagal menampilkan data dari database
+
             iziToast.error({ //tampilkan iziToast dengan notif data berhasil disimpan pada posisi kanan bawah
                     title: 'Gagal menampilkan data dari database',
                     message: "<?php echo $this->session->flashdata('success'); ?>",
                     position: 'topRight'
+
             });
             // alert('Error get data from ajax');
         }
@@ -308,6 +233,7 @@ function ajax_edit(id)
 
 function ajax_delete(id)
 {
+
     iziToast.question({
         timeout: 20000,
         close: false,
@@ -321,7 +247,7 @@ function ajax_delete(id)
         buttons: [
             ['<button><b>Hapus</b></button>', function (instance, toast) {
                 $.ajax({
-                    url : "<?php echo site_url('KLO_karyawan/destroy')?>/"+id, // url untuk menghapus data dari controller
+                    url : "<?php echo site_url('KLO_kuisioner/destroy')?>/"+id, // url untuk menghapus data dari controller
                     type: "POST",
                     dataType: "JSON",
                     success: function(data)

@@ -35,8 +35,8 @@ class KLO_jawaban extends CI_Controller {
 
 	        $row = array();
 	        $row[] = $no++;
-	        $row[] = $field->id_kuisioner_result;
-	        $row[] = $field->kode_survey;
+	        // $row[] = $field->id_kuisioner_result;
+	        // $row[] = $field->kode_survey;
 	        $row[] = $field->no_kuisioner;
 	        $row[] = $field->nama;
 	        $row[] = $field->jk;

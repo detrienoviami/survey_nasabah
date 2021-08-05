@@ -15,12 +15,8 @@
     </div>
   </div>
   <section class="content">
-    <div class="d-flex justify-content-end" style="margin-right: 5px;margin-bottom:5px;">
-      <button type="button" class="btn btn-sm btn-primary" onclick="generatePDF()">
-      <i class="fa fa-print"></i>  Cetak Laporan</button>
-    </div>
     <div class="container-fluid">
-      <div class="card" id="algoritmac45">
+      <div class="card">
         <div class="card-body">
           <!-- <button type="submit" name="hitung_algoritma" class="btn btn-info float-right"> Hitung Algoritma C45 </button> -->
           <!-- <div class="table table-responsive"> -->
@@ -257,9 +253,7 @@
                 </tr>
                 <?php $i++;} ?>
               </tbody>
-
           </table>
-        
         </div>
         <br/>
 
@@ -436,18 +430,6 @@
 <script src="<?php echo base_url()?>assets/asset/js/fokus.js"></script>
 <script src="<?php echo base_url()?>assets/asset/js/kepuasan.js"></script>
 <script src="<?php echo base_url()?>assets/asset/js/all_gain.js"></script>
-<script src="<?php echo base_url()?>assets/asset/pdf/dist/html2pdf.bundle.min.js"></script>
-<script type="text/javascript">
-function generatePDF() {
-    // Choose the element that our invoice is rendered in.
-    const element = document.getElementById("algortimac45");
-    // Choose the element and save the PDF for our user.
-    html2pdf()
-      .from(element)
-      .save();
-  }
-</script>
-
 <script type="text/javascript">
     // $('.entrophy').each({
     //   var jawaban = $('.jawaban').val();

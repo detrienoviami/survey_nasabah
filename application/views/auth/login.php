@@ -57,9 +57,9 @@
     </div> -->
 
     <div class="card card-info">
-      <div class="card-header">
+      <!-- <div class="card-header">
         <h3 class="card-title">Login Aplikasi</h3>
-      </div>
+      </div> -->
       <form class="login-box-body" action="" method="post">
         <div class="card-body">
           <div class="form-group row">
